@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#EFEDE6">
+  <title>1.1 Аэропорт: регистрация, досмотр, посадка · Разговорный английский</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Literata:ital,opsz,wght@0,7..72,600;0,7..72,700;1,7..72,400&family=Noto+Sans:wght@400;700&family=Pixelify+Sans:wght@500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    /* Путь пассажира: три остановки в аэропорту. */
+    .route { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin: 20px 0; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: var(--page); }
+    .route > div { position: relative; padding: 14px 16px; border-right: 2px dashed var(--rule); }
+    .route > div:last-child { border-right: 0; }
+    .route b { display: block; font: 600 10px/1.4 var(--pixel); letter-spacing: 1.1px; text-transform: uppercase; color: var(--leaf); }
+    .route strong { display: block; margin: 2px 0 6px; font-family: var(--display); font-size: 19px; }
+    .route p { margin: 0; font-size: 14.5px; line-height: 1.45; color: var(--ink-soft); }
+    @media (max-width: 640px) { .route { grid-template-columns: 1fr; } .route > div { border-right: 0; border-bottom: 2px dashed var(--rule); } }
+    /* Табло вылетов. */
+    .board { margin: 20px 0; border: 3px solid var(--ink); background: #0F1A2E; color: #F5D76E; font: 600 14px/1.5 var(--mono); box-shadow: 6px 6px 0 var(--ink); overflow-x: auto; }
+    .board table { background: transparent; font: inherit; min-width: 520px; }
+    .board th { background: #1B2944; color: #9FB0CC; border-bottom: 1px solid #2A3A5A; }
+    .board td { border-bottom: 1px solid #22314F; color: #F5D76E; }
+    .board td.st-delay { color: #FF8C42; }
+    .board td.st-cancel { color: #FF6B6B; }
+    .board td.st-board { color: #7EE2A8; }
+    /* Формула фразы. */
+    .formula { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 14px 0; }
+    .formula span { padding: 6px 11px; border: 2px solid var(--ink); background: #fff; font-weight: 600; }
+    .formula span.f-fix { background: var(--ink); color: var(--leaf-bright); }
+    .formula span.f-var { border-style: dashed; color: var(--clay); }
+    .formula i { font-style: normal; font-weight: 700; color: var(--ink-faint); }
+  </style>
+  <script>
+    try { const p = JSON.parse(localStorage.getItem('en-book-profile') || '{}'); const d = document.documentElement; d.dataset.level = p.level || 'a1'; d.dataset.hint = p.hint || 'both'; d.dataset.tr = p.tr || 'show'; } catch (e) {}
+  </script>
+</head>
+<body>
+  <div class="book">
+    <div class="book__body">
+      <div class="spine"><span>Модуль 1 · Дорога</span></div>
+
+      <main class="leaf">
+        <div class="running">
+          <p class="eyebrow"><a href="../../index.html" style="text-decoration:none;color:inherit">Разговорный английский</a> · модуль 1 · дорога</p>
+          <p class="running__folio">Глава 1.1</p>
+        </div>
+
+        <header class="chapter-head">
+          <span class="chapter-num">1.1</span>
+          <h1>Аэропорт: регистрация,<br>досмотр, посадка</h1>
+          <p class="lead">В главе разобран путь пассажира от стойки регистрации до выхода на посадку: какие слова встретятся на табло и на указателях, что спросит сотрудник у стойки и как ему ответить, какие команды звучат на досмотре. Грамматика — вежливая просьба и вопрос «где…?»: в аэропорту они нужны чаще всего.</p>
+        </header>
+
+        <dl class="passport">
+          <div><dt>Модуль</dt><dd>1 · Дорога</dd></div>
+          <div><dt>Уровень</dt><dd>A1–A2, блоки для B1</dd></div>
+          <div><dt>Грамматика</dt><dd>Can I / Could I / I'd like, Where is</dd></div>
+          <div><dt>Зачем это знать</dt><dd>Зарегистрироваться на рейс, пройти досмотр и найти выход без переводчика в телефоне</dd></div>
+        </dl>
+
+        <nav class="contents">
+          <b>В этой главе</b>
+          <ol>
+            <li><a href="#s1">Три остановки в аэропорту</a></li>
+            <li><a href="#s2">Слова темы</a></li>
+            <li><a href="#s3">Диалог у стойки регистрации</a></li>
+            <li><a href="#s4">Вежливая просьба</a></li>
+            <li><a href="#s5">Вопрос «где…?»</a></li>
+            <li><a href="#s6">Досмотр: что вам скажут</a></li>
+            <li><a href="#s7">Табло и объявления</a></li>
+            <li><a href="#s8">Частые ошибки</a></li>
+            <li><a href="#s9">Упражнения</a></li>
+            <li><a href="#s10">Шпаргалка</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="s1"><span class="sec">§1</span>Три остановки в аэропорту</h2>
+        <p>В аэропорту вылета пассажир проходит три места, где придётся говорить или читать по-английски. В каждом месте свой небольшой набор фраз, и он почти не меняется от страны к стране.</p>
+        <div class="route">
+          <div><b>Остановка 1</b><strong>Check-in</strong><p>Стойка регистрации. Показываете паспорт, сдаёте чемодан, выбираете место, получаете посадочный талон.</p></div>
+          <div><b>Остановка 2</b><strong>Security</strong><p>Досмотр. Говорит в основном сотрудник: короткие команды — что достать, что снять, куда пройти.</p></div>
+          <div><b>Остановка 3</b><strong>Gate</strong><p>Выход на посадку. Его номер — на посадочном талоне и на табло. Здесь важно понять объявления о задержке и смене выхода.</p></div>
+        </div>
+        <p>Если вы зарегистрировались онлайн и летите без багажа, первую остановку можно пропустить: посадочный талон будет в телефоне. Но если чемодан сдаётся в багаж, к стойке идти всё равно придётся.</p>
+
+        <h2 id="s2"><span class="sec">§2</span>Слова темы</h2>
+        <p>Слова идут в том порядке, в каком встречаются по пути. Нажмите ▶ у слова или «все подряд» в шапке словаря. Сначала прослушайте весь список, потом повторяйте за голосом каждое слово.</p>
+        <div class="vocab" data-title="Аэропорт">
+          <script type="application/json">[
+            ["flight", "flaɪt", "ФЛАЙТ", "рейс, полёт"],
+            ["check-in", "ˈtʃekɪn", "ЧЕКин", "регистрация на рейс"],
+            ["passport", "ˈpæspɔːrt", "ПЭСпорт", "паспорт"],
+            ["suitcase", "ˈsuːtkeɪs", "СУУТкейс", "чемодан"],
+            ["bag", "bæɡ", "БЭГ", "сумка; место багажа"],
+            ["to check a bag", "tə tʃek ə bæɡ", "тэ ЧЕК э БЭГ", "сдать сумку в багаж"],
+            ["carry-on", "ˈkæri ɑːn", "КЭри-ан", "ручная кладь"],
+            ["scale", "skeɪl", "СКЕЙЛ", "весы"],
+            ["window seat", "ˈwɪndoʊ siːt", "УИНдоу СИИТ", "место у окна"],
+            ["aisle seat", "aɪl siːt", "АЙЛ СИИТ", "место у прохода"],
+            ["boarding pass", "ˈbɔːrdɪŋ pæs", "БОРдин(г) пэс", "посадочный талон"],
+            ["security", "sɪˈkjʊrəti", "сиКЬЮрэди", "досмотр, служба безопасности"],
+            ["liquids", "ˈlɪkwɪdz", "ЛИквидз", "жидкости"],
+            ["tray", "treɪ", "ТРЕЙ", "лоток на досмотре"],
+            ["gate", "ɡeɪt", "ГЕЙТ", "выход на посадку"],
+            ["boarding", "ˈbɔːrdɪŋ", "БОРдин(г)", "посадка"],
+            ["departures", "dɪˈpɑːrtʃərz", "диПАРчерз", "вылеты"],
+            ["arrivals", "əˈraɪvlz", "эРАЙвлз", "прилёты"],
+            ["delayed", "dɪˈleɪd", "диЛЕЙД", "задержан"],
+            ["cancelled", "ˈkænsəld", "КЭНсэлд", "отменён"],
+            ["restroom", "ˈrestruːm", "РЕСТрум", "туалет (в США)"]
+          ]</script>
+        </div>
+        <div class="margin-note">
+          <b>Два слова для туалета</b>
+          <p>В США говорят <span class="w" data-ipa="ˈrestruːm" data-ru="РЕСТрум">restroom</span> или <span class="w" data-ipa="ˈbæθruːm" data-ru="БЭ{С}рум">bathroom</span>, в Великобритании и большинстве аэропортов Европы — <span class="w" data-ipa="ˈtɔɪlət" data-ru="ТОЙлэт">toilet</span>. Поймут любое из них. На указателях часто пишут <i>Toilets</i> или <i>WC</i>.</p>
+        </div>
+
+        <h2 id="s3"><span class="sec">§3</span>Диалог у стойки регистрации</h2>
+        <p>Так обычно проходит регистрация с багажом. Реплики сотрудника почти всегда одни и те же: куда летите, есть ли багаж, какое место. Ваши ответы короткие.</p>
+        <p>Прослушайте диалог целиком. Затем включите <b>«роль: пассажир»</b>: реплики сотрудника прозвучат, а на месте ваших будет пауза. Скажите свою реплику, нажмите «сказал(а) — показать» и сверьте с текстом. Повторяйте, пока не сможете ответить на всё без подглядывания.</p>
+        <div class="dialog">
+          <script type="application/json">{
+            "title": "Check-in · у стойки",
+            "you": "Пассажир",
+            "them": "Сотрудник",
+            "lines": [
+              ["agent", "Hi there! Where are you flying today?", "Здравствуйте! Куда летите сегодня?", "хай {з}эр! УЭР ар ю ФЛАЙин(г) тэДЭЙ?"],
+              ["you", "To London. Here's my passport.", "В Лондон. Вот мой паспорт.", "тэ ЛАНдэн. ХИРЗ май ПЭСпорт."],
+              ["agent", "Thank you. Are you checking any bags?", "Спасибо. Будете сдавать багаж?", "{С}ЭНК ю. ар ю ЧЕКин(г) эни БЭГЗ?"],
+              ["you", "Yes, just this one.", "Да, только этот.", "ЙЕС, джаст {З}ИС уан."],
+              ["agent", "Please put it on the scale.", "Поставьте его на весы, пожалуйста.", "плиз ПУТ ит он {з}э СКЕЙЛ."],
+              ["agent", "That's fine. Would you like a window or an aisle seat?", "Всё в порядке. Вам место у окна или у прохода?", "{з}этс ФАЙН. вуд ю ЛАЙК э УИНдоу ор эн АЙЛ сит?"],
+              ["you", "Could I have a window seat, please?", "Можно место у окна?", "куд ай ХЭВ э УИНдоу сит, плиз?"],
+              ["agent", "Sure. Here's your boarding pass. Boarding starts at nine fifteen at gate B7.", "Конечно. Вот ваш посадочный талон. Посадка начинается в 9:15, выход B7.", "ШУР. ХИРЗ ёр БОРдин(г) пэс. БОРдин(г) СТАРТС эт найн фифТИН эт гейт би-СЕвэн."],
+              ["you", "Thank you! Where is security?", "Спасибо! Где досмотр?", "{С}ЭНК ю! УЭР из сиКЬЮрэди?"],
+              ["agent", "Straight ahead and to the left. Have a nice flight!", "Прямо и налево. Хорошего полёта!", "стрейт эХЕД эн тэ {з}э ЛЕФТ. хэв э НАЙС ФЛАЙТ!"]
+            ]
+          }</script>
+        </div>
+        <p>Разберём, что в диалоге устроено не так, как в русском.</p>
+        <ul>
+          <li><b>Here's my passport</b> — «вот мой паспорт». <i>Here's</i> — сокращение от <i>here is</i>. Так говорят, когда что-то протягивают. Ответ сотрудника, когда он возвращает документ, — <i>Here you go</i> или <i>Here you are</i>.</li>
+          <li><b>Are you checking any bags?</b> — дословно «вы сдаёте какие-нибудь сумки?». Глагол <i>check</i> здесь значит «сдать в багаж». Вопрос может звучать и так: <i>Any bags to check?</i></li>
+          <li><b>just this one</b> — «только этот». Слово <i>one</i> заменяет уже названное существительное, чтобы не повторять <i>bag</i>.</li>
+          <li><b>a window or an aisle seat</b> — перед <i>aisle</i> стоит <i>an</i>, а не <i>a</i>: слово начинается с гласного звука «ай». Артикль выбирается по звуку, а не по букве.</li>
+          <li><b>Have a nice flight!</b> — отвечают <i>Thank you!</i> или <i>Thanks, you too!</i> — последнее только если собеседник тоже куда-то летит.</li>
+        </ul>
+
+        <h2 id="s4"><span class="sec">§4</span>Вежливая просьба</h2>
+        <p>В русском «дайте место у окна» с интонацией звучит нормально. В английском повелительное <i>Give me…</i> в разговоре с сотрудником звучит грубо, а <i>I want…</i> — требовательно, как у капризного ребёнка. Просьбу оформляют вопросом или словами «я бы хотел».</p>
+        <h3>Три формулы</h3>
+        <div class="formula"><span class="f-fix">Can I have</span><i>+</i><span class="f-var">a window seat</span><i>+</i><span class="f-fix">please?</span></div>
+        <p><span class="w" data-ipa="kən aɪ hæv" data-ru="кэн ай ХЭВ">Can I have</span> — «можно мне…?». Обычная вежливость, подходит почти всегда: в кафе, у стойки, в магазине.</p>
+        <div class="formula"><span class="f-fix">Could I have</span><i>+</i><span class="f-var">an aisle seat</span><i>+</i><span class="f-fix">please?</span></div>
+        <p><span class="w" data-ipa="kʊd aɪ hæv" data-ru="куд ай ХЭВ">Could I have</span> — то же, но мягче. <i>Could</i> — прошедшее время от <i>can</i>, и от этого просьба звучит менее настойчиво. Удобно, когда просите о том, что не обязаны дать: сменить место, пропустить без очереди.</p>
+        <div class="formula"><span class="f-fix">I'd like</span><i>+</i><span class="f-var">a window seat</span><i>+</i><span class="f-fix">please.</span></div>
+        <p><span class="w" data-ipa="aɪd laɪk" data-ru="айд ЛАЙК">I'd like</span> — «я бы хотел(а)». Это сокращение от <i>I would like</i>. Фраза утвердительная, без вопроса, и при этом вежливая. Глагол не меняется: <i>I'd like</i> говорят и мужчины, и женщины.</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Как сказать</th><th>Как звучит</th></tr></thead>
+            <tbody>
+              <tr><td><s>Give me a window seat.</s></td><td>грубо, приказ</td></tr>
+              <tr><td><s>I want a window seat.</s></td><td>требовательно</td></tr>
+              <tr><td>Can I have a window seat, please?</td><td>нормально</td></tr>
+              <tr><td>Could I have a window seat, please?</td><td>мягко</td></tr>
+              <tr><td>I'd like a window seat, please.</td><td>вежливо</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Слово <span class="w" data-ipa="pliːz" data-ru="ПЛИИЗ">please</span> ставится в конец фразы, перед ним — запятая. В английской речи его говорят чаще, чем «пожалуйста» в русской: без него просьба звучит суше.</p>
+        <div class="margin-note" data-for="b1">
+          <b><span class="lvl">B1</span>Если просьба трудная</b>
+          <p>Когда просите о том, что сделать сложно, — пересадить вас, посадить семью рядом, — помогает ещё более мягкая формула: <i>Is there any chance I could get an aisle seat?</i> — «Нет ли возможности получить место у прохода?». Или: <i>Would it be possible to sit together?</i> — «Можно ли нам сесть вместе?».</p>
+        </div>
+
+        <h2 id="s5"><span class="sec">§5</span>Вопрос «где…?»</h2>
+        <p>Чтобы спросить дорогу, достаточно одной формулы. В вопросе слово <i>is</i> стоит перед предметом, а не после, как в русском «где находится…».</p>
+        <div class="formula"><span class="f-fix">Where is</span><i>+</i><span class="f-var">gate B7</span><i>?</i></div>
+        <p>В речи <i>where is</i> сливается в <span class="w" data-ipa="werz" data-ru="УЭРЗ">where's</span>. Если ищете несколько предметов, <i>is</i> меняется на <i>are</i>: <i>Where are the restrooms?</i> — туалеты обычно во множественном числе.</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Вопрос</th><th>Перевод</th></tr></thead>
+            <tbody>
+              <tr><td><span class="w" data-ipa="werz ˈɡeɪt biː ˈsevən" data-ru="УЭРЗ гейт би-СЕвэн">Where's gate B7?</span></td><td><span class="tr">Где выход B7?</span></td></tr>
+              <tr><td><span class="w" data-ipa="werz ðə ˈtʃekɪn fɔːr ˈlʌndən" data-ru="УЭРЗ {з}э ЧЕКин фэр ЛАНдэн">Where's the check-in for London?</span></td><td><span class="tr">Где регистрация на Лондон?</span></td></tr>
+              <tr><td><span class="w" data-ipa="wer ɑːr ðə ˈrestruːmz" data-ru="УЭР ар {з}э РЕСТрумз">Where are the restrooms?</span></td><td><span class="tr">Где туалеты?</span></td></tr>
+              <tr><td><span class="w" data-ipa="ˈwɪtʃ ɡeɪt" data-ru="УИЧ ГЕЙТ">Which gate?</span></td><td><span class="tr">Какой выход?</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Ответ обычно короткий, и в нём три-четыре слова направления: <span class="w" data-ipa="streɪt əˈhed" data-ru="стрейт эХЕД">straight ahead</span> — прямо, <span class="w" data-ipa="ɑːn ðə left" data-ru="он {з}э ЛЕФТ">on the left</span> — слева, <span class="w" data-ipa="ɑːn ðə raɪt" data-ru="он {з}э РАЙТ">on the right</span> — справа, <span class="w" data-ipa="ˈdaʊnˌsterz" data-ru="даунСТЕРЗ">downstairs</span> — этажом ниже, <span class="w" data-ipa="ˌʌpˈsterz" data-ru="апСТЕРЗ">upstairs</span> — этажом выше. Если ответ не поняли, переспросите: <span class="w" data-ipa="ˈsɔːri, kʊd juː rɪˈpiːt ðæt" data-ru="САри, куд ю риПИТ {з}эт">Sorry, could you repeat that?</span></p>
+
+        <h2 id="s6"><span class="sec">§6</span>Досмотр: что вам скажут</h2>
+        <p>На досмотре говорит в основном сотрудник. Фразы короткие, часто без «пожалуйста» — так быстрее при длинной очереди, это не грубость. Ваша задача — понять команду. Отвечать достаточно <i>OK</i> или <i>Sure</i>.</p>
+        <div class="dialog">
+          <script type="application/json">{
+            "title": "Security · команды на досмотре",
+            "them": "Сотрудник",
+            "lines": [
+              ["officer", "Any liquids or laptops?", "Есть жидкости или ноутбуки?", "Эни ЛИквидз ор ЛЭПтапс?"],
+              ["officer", "Please take your laptop out of the bag.", "Достаньте ноутбук из сумки.", "плиз ТЕЙК ёр ЛЭПтап АУТ ов {з}э БЭГ."],
+              ["officer", "Put it in a separate tray.", "Положите его в отдельный лоток.", "ПУТ ит ин э СЕпэрэт ТРЕЙ."],
+              ["officer", "Take off your belt and shoes.", "Снимите ремень и обувь.", "тейк ОФ ёр БЕЛТ эн ШУУЗ."],
+              ["officer", "Empty your pockets, please.", "Выложите всё из карманов.", "ЭМпти ёр ПАкитс, плиз."],
+              ["officer", "Step through, please.", "Проходите через рамку.", "СТЕП {с}руу, плиз."],
+              ["officer", "Arms up.", "Руки вверх.", "АРМЗ АП."],
+              ["officer", "Is this your bag? Can you open it, please?", "Это ваша сумка? Откройте её, пожалуйста.", "из {з}ис ЁР БЭГ? кэн ю ОУпэн ит, плиз?"]
+            ]
+          }</script>
+        </div>
+        <p>Если команда непонятна, не угадывайте — переспросите <i>Sorry?</i> с вопросительной интонацией. Сотрудник повторит или покажет жестом.</p>
+
+        <h2 id="s7"><span class="sec">§7</span>Табло и объявления</h2>
+        <p>Табло вылетов называется <i>Departures</i>. В нём время, город, номер рейса, выход и статус. Статус — самое важное: от него зависит, идти на посадку или ждать.</p>
+        <div class="board">
+          <table>
+            <thead><tr><th>Time</th><th>Destination</th><th>Flight</th><th>Gate</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>09:40</td><td>LONDON LHR</td><td>BA 883</td><td>B7</td><td class="st-board">BOARDING</td></tr>
+              <tr><td>09:55</td><td>ISTANBUL</td><td>TK 1774</td><td>A3</td><td>ON TIME</td></tr>
+              <tr><td>10:05</td><td>DUBAI</td><td>EK 172</td><td>C12</td><td class="st-delay">DELAYED 11:30</td></tr>
+              <tr><td>10:20</td><td>BELGRADE</td><td>JU 381</td><td>—</td><td class="st-cancel">CANCELLED</td></tr>
+              <tr><td>10:35</td><td>TBILISI</td><td>A9 692</td><td>B2</td><td class="st-board">FINAL CALL</td></tr>
+              <tr><td>10:50</td><td>ALMATY</td><td>KC 942</td><td>A8</td><td>GATE CLOSED</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="vocab" data-title="Статусы на табло">
+          <script type="application/json">[
+            ["on time", "ɑːn taɪm", "он ТАЙМ", "по расписанию"],
+            ["boarding", "ˈbɔːrdɪŋ", "БОРдин(г)", "идёт посадка"],
+            ["final call", "ˈfaɪnl kɔːl", "ФАЙнл КОЛ", "последнее приглашение на посадку"],
+            ["gate closed", "ɡeɪt kloʊzd", "гейт КЛОУЗД", "посадка закончена"],
+            ["delayed", "dɪˈleɪd", "диЛЕЙД", "задержан"],
+            ["cancelled", "ˈkænsəld", "КЭНсэлд", "отменён"],
+            ["gate change", "ɡeɪt tʃeɪndʒ", "гейт ЧЕЙНДЖ", "смена выхода"]
+          ]</script>
+        </div>
+        <p>Объявления по громкой связи строятся по одной схеме: номер рейса, город, что случилось, куда идти. Ловите знакомые слова — номер рейса и статус.</p>
+        <div class="dialog">
+          <script type="application/json">{
+            "title": "Объявления",
+            "them": "Диктор",
+            "lines": [
+              ["speaker", "Flight BA 883 to London is now boarding at gate B7.", "Рейс BA 883 в Лондон: идёт посадка, выход B7.", "ФЛАЙТ би-эй эйт-эйт-{С}РИ тэ ЛАНдэн из нау БОРдин(г) эт гейт би-СЕвэн."],
+              ["speaker", "This is the final call for passengers on flight A9 692 to Tbilisi.", "Последнее приглашение для пассажиров рейса A9 692 в Тбилиси.", "{з}ис из {з}э ФАЙнл КОЛ фэр ПЭсинджерз он флайт эй-найн сикс-найн-ТУ тэ тбиЛИси."],
+              ["speaker", "Flight EK 172 to Dubai is delayed. The new departure time is 11:30.", "Рейс EK 172 в Дубай задерживается. Новое время вылета — 11:30.", "флайт ии-кей уан-сэвэн-ТУ тэ дуБАЙ из диЛЕЙД. {з}э НЬЮ диПАРчер тайм из иЛЕвэн {С}ЁРди."]
+            ]
+          }</script>
+        </div>
+
+        <h2 id="s8"><span class="sec">§8</span>Частые ошибки</h2>
+        <div class="table-scroll">
+          <table class="errors-table">
+            <thead><tr><th>Ошибка</th><th>Как правильно</th><th>Почему</th></tr></thead>
+            <tbody>
+              <tr><td><s>I want window.</s></td><td>Could I have a window seat, please?</td><td><i>I want</i> звучит требовательно; <i>window</i> без <i>seat</i> — просто «окно»; перед существительным нужен артикль <i>a</i></td></tr>
+              <tr><td>aisle как «аисл»</td><td><span class="w" data-ipa="aɪl" data-ru="АЙЛ">aisle</span></td><td>буква s не читается</td></tr>
+              <tr><td><s>Where is the toilets?</s></td><td>Where are the restrooms?</td><td>со множественным числом — <i>are</i></td></tr>
+              <tr><td><s>I have one bag for check.</s></td><td>I'm checking one bag.</td><td>«сдаю в багаж» — глагол <i>check</i>, без предлога</td></tr>
+              <tr><td>th как «т» или «ф»</td><td><span class="w" data-ipa="θæŋk juː" data-ru="{С}ЭНК ю">thank you</span></td><td>язык между зубами; «сэнк ю» поймут, «фэнк ю» — хуже</td></tr>
+              <tr><td>молчание, когда не поняли</td><td>Sorry, could you repeat that?</td><td>переспросить — нормально; молчание считают согласием</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="s9"><span class="sec">§9</span>Упражнения</h2>
+        <p>Упражнения идут от узнавания к речи: сначала значение фраз, потом кто что говорит, потом сборка фраз и диалога. Плитку можно перетащить или нажать на неё, а затем на место. Ошибки уходят в блок «Повтор» в конце главы.</p>
+
+        <div class="ex" data-type="match" data-id="1.1-znachenie">
+          <script type="application/json">{
+            "title": "Фраза и её значение",
+            "task": "Перетащите английскую фразу к переводу. Фраза прозвучит, когда встанет на место.",
+            "pairs": [
+              ["Here's my passport.", "Вот мой паспорт."],
+              ["Are you checking any bags?", "Будете сдавать багаж?"],
+              ["Window or aisle?", "У окна или у прохода?"],
+              ["Please put it on the scale.", "Поставьте на весы, пожалуйста."],
+              ["Where is security?", "Где досмотр?"],
+              ["Have a nice flight!", "Хорошего полёта!"]
+            ]
+          }</script>
+        </div>
+
+        <div class="ex" data-type="sort" data-id="1.1-kto">
+          <script type="application/json">{
+            "title": "Кто это говорит",
+            "task": "Разложите реплики: какие скажет сотрудник аэропорта, а какие — вы.",
+            "buckets": ["Говорит сотрудник", "Говорите вы"],
+            "items": [
+              ["Where are you flying today?", 0],
+              ["Any bags to check?", 0],
+              ["Take off your belt.", 0],
+              ["Here's your boarding pass.", 0],
+              ["Just this one.", 1],
+              ["Could I have an aisle seat?", 1],
+              ["Where's gate B7?", 1],
+              ["Sorry, could you repeat that?", 1]
+            ]
+          }</script>
+        </div>
+
+        <div class="ex" data-type="listen" data-id="1.1-sluh">
+          <script type="application/json">{
+            "title": "Слова аэропорта на слух",
+            "task": "Звучит одно из похожих слов. Положите в рамку то, что услышали.",
+            "items": [["gate","get","great"],["flight","fight","flat"],["tray","try","three"],["aisle","all","oil"],["boarding","border","boring"],["seat","sit","set"]]
+          }</script>
+        </div>
+
+        <div class="ex" data-type="order" data-id="1.1-sborka">
+          <script type="application/json">{
+            "title": "Соберите фразу",
+            "task": "Расставьте слова по порядку. В некоторых заданиях есть лишнее слово — его оставьте в запасе.",
+            "items": [
+              {"ru": "Можно мне место у окна?", "en": "Could I have a window seat, please?", "why": "Could I have + что + please"},
+              {"ru": "Я бы хотел место у прохода.", "en": "I'd like an aisle seat, please.", "extra": ["want", "a"], "why": "перед aisle — an, потому что слово начинается с гласного звука"},
+              {"ru": "Где выход B7?", "en": "Where is gate B7?", "extra": ["are"], "why": "один выход — is"},
+              {"ru": "Я сдаю в багаж один чемодан.", "en": "I'm checking one suitcase.", "extra": ["for"]},
+              {"ru": "Где туалеты?", "en": "Where are the restrooms?", "extra": ["is"], "why": "несколько туалетов — are"}
+            ]
+          }</script>
+        </div>
+
+        <div class="ex" data-type="gap" data-id="1.1-dialog">
+          <script type="application/json">{
+            "title": "Диалог с пропусками",
+            "task": "Заполните пропуски. Когда строка заполнена целиком, она прозвучит. Лишние слова останутся в запасе.",
+            "lines": [
+              "— Where are you {flying} today?",
+              "— To Rome. {Here's} my passport.",
+              "— Are you checking any {bags}?",
+              "— Yes, just {this} one.",
+              "— Window or {aisle}?",
+              "— {Could} I have a window seat, please?"
+            ],
+            "extra": ["want", "island", "these", "There's"]
+          }</script>
+        </div>
+
+        <div class="ex" data-type="match" data-id="1.1-tablo">
+          <script type="application/json">{
+            "title": "Табло вылетов",
+            "task": "Что означает статус рейса?",
+            "pairs": [
+              ["on time", "По расписанию"],
+              ["delayed", "Задержан"],
+              ["cancelled", "Отменён"],
+              ["final call", "Последнее приглашение на посадку"],
+              ["gate change", "Смена выхода"],
+              ["gate closed", "Посадка закончена"]
+            ]
+          }</script>
+        </div>
+
+        <h2 id="s10"><span class="sec">§10</span>Шпаргалка</h2>
+        <p>Эти фразы стоит сохранить в телефон перед поездкой.</p>
+        <div class="cheat">
+          <div><b>У стойки</b><code>Here's my passport.</code><code>I'm checking one bag.</code><code>Just this one.</code><code>Could I have a window seat, please?</code><code>Could I have an aisle seat, please?</code></div>
+          <div><b>Спросить дорогу</b><code>Where's gate B7?</code><code>Where's security?</code><code>Where are the restrooms?</code><code>Sorry, could you repeat that?</code></div>
+          <div><b>Досмотр — поймёте</b><code>Any liquids or laptops?</code><code>Take off your shoes.</code><code>Empty your pockets.</code><code>Step through. Arms up.</code></div>
+          <div><b>Табло</b><code>on time — по расписанию</code><code>delayed — задержан</code><code>cancelled — отменён</code><code>final call — последний вызов</code><code>gate change — смена выхода</code></div>
+        </div>
+
+        <div class="review"></div>
+
+        <nav class="pager">
+          <a href="../02-diagnostika/index.html">← 0.2 Стартовая проверка</a>
+          <a href="../../index.html">Оглавление →</a>
+        </nav>
+        <p class="colophon"><span>Разговорный английский · Макаров Максим Николаевич</span><span>Глава 1.1</span></p>
+      </main>
+    </div>
+  </div>
+  <script src="../../english.js"></script>
+</body>
+</html>

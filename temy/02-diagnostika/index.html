@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#EFEDE6">
+  <title>0.2 Стартовая проверка · Разговорный английский</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Literata:ital,opsz,wght@0,7..72,600;0,7..72,700;1,7..72,400&family=Noto+Sans:wght@400;700&family=Pixelify+Sans:wght@500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    .quiz { margin: 22px 0; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--leaf); background: var(--page); }
+    .quiz__head { display: flex; justify-content: space-between; gap: 12px; padding: 10px 16px; background: var(--ink); color: var(--leaf-pale); font: 600 10.5px/1.4 var(--pixel); letter-spacing: 1.1px; text-transform: uppercase; }
+    .quiz__bar { height: 6px; background: var(--rule); }
+    .quiz__bar i { display: block; height: 100%; width: 0; background: var(--leaf-bright); transition: width .3s; }
+    .quiz__body { padding: 18px 18px 20px; }
+    .quiz__q { margin: 0 0 6px; font-family: var(--display); font-size: clamp(19px, 2vw, 24px); line-height: 1.3; }
+    .quiz__hint { margin: 0 0 14px; font-size: 14.5px; color: var(--ink-soft); }
+    .quiz__listen { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; }
+    .quiz__listen .say { width: 52px; height: 52px; font-size: 20px; }
+    .choices { display: grid; gap: 8px; }
+    .choice { padding: 12px 15px; border: 2px solid var(--ink); background: #fff; box-shadow: 3px 3px 0 var(--ink); color: var(--ink); font: 500 16px/1.35 var(--body); text-align: left; cursor: pointer; }
+    .choice:hover { background: var(--leaf-pale); }
+    .choice.is-chosen { background: var(--ink); color: var(--leaf-bright); }
+    .quiz__result h3 { margin: 0 0 8px; font-size: 26px; }
+    .quiz__result .lvl { font-size: 12px; }
+    .levels { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin: 16px 0; }
+    .levels button { padding: 12px 14px; border: 2px solid var(--ink); background: #fff; text-align: left; cursor: pointer; font: inherit; }
+    .levels button:hover { background: var(--leaf-pale); }
+    .levels button b { display: block; font: 700 13px/1.4 var(--mono); color: var(--leaf); }
+    .levels button span { font-size: 14px; color: var(--ink-soft); }
+    .levels button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+    .levels button[aria-pressed="true"] span { color: #CCD3E0; }
+  </style>
+  <script>
+    try { const p = JSON.parse(localStorage.getItem('en-book-profile') || '{}'); const d = document.documentElement; d.dataset.level = p.level || 'a1'; d.dataset.hint = p.hint || 'both'; d.dataset.tr = p.tr || 'show'; } catch (e) {}
+  </script>
+</head>
+<body>
+  <div class="book">
+    <div class="book__body">
+      <div class="spine"><span>Модуль 0 · Старт</span></div>
+
+      <main class="leaf">
+        <div class="running">
+          <p class="eyebrow"><a href="../../index.html" style="text-decoration:none;color:inherit">Разговорный английский</a> · модуль 0 · старт</p>
+          <p class="running__folio">Глава 0.2</p>
+        </div>
+
+        <header class="chapter-head">
+          <span class="chapter-num">0.2</span>
+          <h1>Стартовая<br>проверка</h1>
+          <p class="lead">Проверка определяет, с какого уровня начать, и настраивает книгу: сколько подсказок показывать, виден ли перевод сразу, с какой скоростью звучат фразы. Вопросов от 4 до 12: если ответы на ступени в основном неверные, проверка заканчивается, и следующую ступень вы не видите.</p>
+        </header>
+
+        <dl class="passport">
+          <div><dt>Модуль</dt><dd>0 · Старт</dd></div>
+          <div><dt>Время</dt><dd>5–10 минут</dd></div>
+          <div><dt>Нужно</dt><dd>Звук: часть вопросов на слух</dd></div>
+          <div><dt>Результат</dt><dd>Уровень и настройки книги, их можно поменять в шапке</dd></div>
+        </dl>
+
+        <h2 id="s1"><span class="sec">§1</span>Как устроена проверка</h2>
+        <p>Вопросы идут ступенями по шкале CEFR — общеевропейской шкале уровней владения языком. На каждой ступени четыре вопроса. Три верных ответа из четырёх открывают следующую ступень. Если верных меньше трёх, проверка заканчивается, и уровнем становится последняя пройденная ступень.</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Уровень</th><th>Что это значит в поездке</th><th>Как настроится книга</th></tr></thead>
+            <tbody>
+              <tr><td><b>A0</b> · с нуля</td><td>Английский почти незнаком</td><td>обе подсказки, перевод виден, медленный темп</td></tr>
+              <tr><td><b>A1</b> · начальный</td><td>Понимаете короткие фразы, если говорят медленно</td><td>обе подсказки, перевод виден</td></tr>
+              <tr><td><b>A2</b> · базовый</td><td>Объясняетесь в магазине и гостинице простыми фразами</td><td>обе подсказки, перевод по нажатию</td></tr>
+              <tr><td><b>B1</b> · средний</td><td>Решаете бытовые вопросы, но речь пока не свободная</td><td>только транскрипция, перевод по нажатию, в главах — дополнительные фразы</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Перед вопросами проверьте звук: нажмите ▶ ниже. Если голоса нет, сначала прочитайте <a href="../01-kak-chitat/index.html#s3">§3 главы 0.1</a>.</p>
+        <div class="voice-status"></div>
+
+        <h2 id="s2"><span class="sec">§2</span>Проверка</h2>
+        <div class="quiz" id="quiz"></div>
+
+        <h2 id="s3"><span class="sec">§3</span>Выбрать уровень без проверки</h2>
+        <p>Если уровень вы знаете, выберите его здесь. Настройки поменяются так же, как после проверки.</p>
+        <div class="levels" id="levels"></div>
+
+        <nav class="pager">
+          <a href="../01-kak-chitat/index.html">← 0.1 Как читать транскрипцию</a>
+          <a href="../11-aeroport/index.html">1.1 Аэропорт →</a>
+        </nav>
+        <p class="colophon"><span>Разговорный английский · Макаров Максим Николаевич</span><span>Глава 0.2</span></p>
+      </main>
+    </div>
+  </div>
+  <script src="../../english.js"></script>
+  <script>
+  (() => {
+    const { say, sayButton, setProfile, LEVELS } = window.EN;
+
+    // Ступени. В каждом вопросе первый вариант — верный; на экране они перемешиваются.
+    const STEPS = [
+      { level: 'a1', items: [
+        { q: 'Что спросили?', listen: 'Where is the bathroom?', options: ['Где туалет?', 'Где ванна в номере?', 'Где выход?'] },
+        { q: 'I ___ from Russia.', hint: 'Вставьте пропущенное слово.', options: ['am', 'is', 'are'] },
+        { q: 'How much is it?', hint: 'Что значит эта фраза?', options: ['Сколько это стоит?', 'Сколько их?', 'Сколько времени?'] },
+        { q: 'Что вам сказали?', listen: 'Your room is on the third floor.', options: ['Ваш номер на третьем этаже.', 'Ваш номер — тридцать.', 'Ваш номер ещё не готов.'] },
+      ] },
+      { level: 'a2', items: [
+        { q: 'I ___ to London last year.', hint: 'Вставьте пропущенное слово.', options: ['went', 'go', 'have gone'] },
+        { q: 'О чём просят?', listen: 'Could you speak more slowly, please?', options: ['Говорить медленнее', 'Говорить громче', 'Повторить ещё раз'] },
+        { q: 'Is breakfast included?', hint: 'Что значит эта фраза?', options: ['Завтрак включён в стоимость?', 'Завтрак уже начался?', 'Где подают завтрак?'] },
+        { q: 'We have been waiting ___ an hour.', hint: 'Вставьте пропущенное слово.', options: ['for', 'since', 'during'] },
+      ] },
+      { level: 'b1', items: [
+        { q: 'If I ___ more time, I would stay longer.', hint: 'Вставьте пропущенное слово.', options: ['had', 'have', 'will have'] },
+        { q: 'Что случилось?', listen: "I'm afraid there's been a mix-up with my booking.", options: ['С бронированием какая-то путаница', 'Я боюсь бронировать заранее', 'Бронирование подтвердили'] },
+        { q: 'The landlord asked for a ___ before we move in.', hint: 'Арендодатель просит до заселения…', options: ['deposit', 'receipt', 'discount'] },
+        { q: 'Что вам сказали?', listen: "You'll need to fill out this form and bring it back tomorrow.", options: ['Заполнить форму и принести завтра', 'Забрать форму завтра', 'Форму заполнят за вас'] },
+      ] },
+    ];
+
+    const quiz = document.getElementById('quiz');
+    const shuffle = list => list.map(v => [Math.random(), v]).sort((a, b) => a[0] - b[0]).map(p => p[1]);
+    const total = STEPS.length * 4;
+    let step = 0, index = 0, right = 0, asked = 0, passed = null;
+
+    const frame = (title, html) => {
+      quiz.innerHTML = `<div class="quiz__head"><span>${title}</span><span>${asked} из ${total} макс.</span></div>`
+        + `<div class="quiz__bar"><i style="width:${Math.round(asked / total * 100)}%"></i></div><div class="quiz__body"></div>`;
+      const body = quiz.querySelector('.quiz__body');
+      if (html) body.innerHTML = html;
+      return body;
+    };
+
+    const intro = () => {
+      const body = frame('Перед началом', `<p class="quiz__q">Зачем вам английский?</p><p class="quiz__hint">От ответа зависит, какие главы книга предложит первыми.</p>`);
+      const box = document.createElement('div');
+      box.className = 'choices';
+      [['travel', 'Путешествовать: аэропорт, гостиница, кафе, город'], ['move', 'Переехать: аренда, банк, документы, работа'], ['both', 'И то и другое']].forEach(([goal, text]) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'choice'; b.textContent = text;
+        b.addEventListener('click', () => { setProfile({ goal }); ask(); });
+        box.append(b);
+      });
+      body.append(box);
+    };
+
+    const ask = () => {
+      const item = STEPS[step].items[index];
+      const body = frame(`Ступень ${STEPS[step].level.toUpperCase()} · вопрос ${index + 1} из 4`);
+      body.insertAdjacentHTML('beforeend', `<p class="quiz__q">${item.q}</p>`);
+      if (item.hint) body.insertAdjacentHTML('beforeend', `<p class="quiz__hint">${item.hint}</p>`);
+      if (item.listen) {
+        const row = document.createElement('div');
+        row.className = 'quiz__listen';
+        row.append(sayButton(item.listen, { label: 'Послушать ещё раз' }), sayButton(item.listen, { slow: true }));
+        row.insertAdjacentHTML('beforeend', '<span class="quiz__hint" style="margin:0">Можно слушать сколько угодно раз. Текст фразы не показывается.</span>');
+        body.append(row);
+        setTimeout(() => say(item.listen), 300);
+      }
+      const box = document.createElement('div');
+      box.className = 'choices';
+      shuffle(item.options).forEach(option => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'choice'; b.textContent = option;
+        b.addEventListener('click', () => {
+          b.classList.add('is-chosen');
+          box.querySelectorAll('button').forEach(x => { x.disabled = true; });
+          if (option === item.options[0]) right += 1;
+          asked += 1;
+          setTimeout(next, 250);
+        });
+        box.append(b);
+      });
+      // «Не знаю» лучше угадывания: случайный верный ответ завышает уровень.
+      const skip = document.createElement('button');
+      skip.type = 'button'; skip.className = 'choice'; skip.textContent = 'Не знаю';
+      skip.style.boxShadow = 'none'; skip.style.color = 'var(--ink-soft)';
+      skip.addEventListener('click', () => { asked += 1; next(); });
+      box.append(skip);
+      body.append(box);
+    };
+
+    const next = () => {
+      index += 1;
+      if (index < 4) { ask(); return; }
+      if (right >= 3) {
+        passed = STEPS[step].level;
+        step += 1; index = 0; right = 0;
+        if (step < STEPS.length) { ask(); return; }
+      }
+      result(passed || 'a0');
+    };
+
+    const ADVICE = {
+      a0: 'Начните с главы 0.1 и пройдите её целиком, со всеми звуками. В главах модуля 1 сначала слушайте словарь и диалог несколько раз, потом делайте упражнения. Подсказки и перевод будут видны всегда.',
+      a1: 'Пройдите главу 0.1 — особенно §4 о звуках и §5 о безударных гласных. Затем модуль 1 по порядку. В диалогах пробуйте режим «роль»: собеседник звучит, свою реплику вы говорите сами.',
+      a2: 'Главу 0.1 достаточно пролистать и сделать упражнения. В модуле 1 перевод скрыт: сначала попробуйте понять фразу сами, потом нажмите на неё. Главная работа — режим «роль» в диалогах.',
+      b1: 'Главу 0.1 можно пропустить. В главах будут видны дополнительные блоки с отметкой B1 — более естественные и вежливые формулировки. Русская подсказка выключена, включить её можно в шапке.',
+    };
+    const result = level => {
+      setProfile({ level, ...pick(LEVELS[level]), tested: true });
+      const body = frame('Результат');
+      quiz.querySelector('.quiz__bar i').style.width = '100%';
+      body.innerHTML = `<div class="quiz__result"><h3><span class="lvl">${level.toUpperCase()}</span> ${LEVELS[level].name}</h3>`
+        + `<p>${ADVICE[level]}</p><p>Книга уже настроена под этот уровень. Подсказки, перевод и темп можно поменять в шапке любой страницы.</p>`
+        + `<div class="btnrow"><a class="btn btn--dark" href="${level === 'b1' ? '../11-aeroport/index.html' : '../01-kak-chitat/index.html'}">${level === 'b1' ? 'перейти к 1.1 →' : 'перейти к 0.1 →'}</a>`
+        + `<button class="btn" type="button" id="again">пройти заново</button></div></div>`;
+      body.querySelector('#again').addEventListener('click', restart);
+      syncLevels();
+    };
+    const pick = l => ({ hint: l.hint, tr: l.tr, rate: l.rate });
+    const restart = () => { step = 0; index = 0; right = 0; asked = 0; passed = null; intro(); };
+
+    const levels = document.getElementById('levels');
+    Object.entries(LEVELS).forEach(([id, l]) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.dataset.level = id;
+      b.innerHTML = `<b>${id.toUpperCase()}</b><span>${l.name}</span>`;
+      b.addEventListener('click', () => { setProfile({ level: id, ...pick(l) }); syncLevels(); });
+      levels.append(b);
+    });
+    const syncLevels = () => levels.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.level === window.EN.profile.level)));
+    syncLevels();
+    intro();
+  })();
+  </script>
+</body>
+</html>

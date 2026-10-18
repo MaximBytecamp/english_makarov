@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#EFEDE6">
+  <title>Разговорный английский · Макаров Максим Николаевич</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Literata:ital,opsz,wght@0,7..72,600;0,7..72,700;1,7..72,400&family=Noto+Sans:wght@400;700&family=Pixelify+Sans:wght@500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .cover { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(260px, .8fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
+    .cover h1 { margin: 12px 0 10px; font-family: var(--display); font-size: clamp(36px, 5.6vw, 74px); line-height: 1.02; letter-spacing: -.5px; }
+    .cover__sub { margin: 0 0 22px; font-family: var(--display); font-size: clamp(17px, 1.8vw, 26px); color: var(--leaf); }
+    .cover__meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; }
+    .cover__meta span { padding: 8px 12px; border: 2px solid var(--ink); background: #fff; font: 600 11px/1 var(--pixel); letter-spacing: 1px; }
+    @media (max-width: 820px) { .cover { grid-template-columns: 1fr; } }
+
+    /* Карточка справа: посадочный талон с профилем читателя. */
+    .ticket { border: 3px solid var(--ink); background: var(--page); box-shadow: 7px 7px 0 var(--ink); transform: rotate(-.7deg); }
+    .ticket__top { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: var(--ink); color: var(--leaf-bright); font: 600 10.5px/1.4 var(--pixel); letter-spacing: 1.3px; text-transform: uppercase; }
+    .ticket__route { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; padding: 16px 18px 10px; }
+    .ticket__route b { display: block; font: 700 30px/1 var(--mono); }
+    .ticket__route span { font-size: 12.5px; color: var(--ink-soft); }
+    .ticket__route i { font-style: normal; font-size: 22px; color: var(--leaf); }
+    .ticket__route div:last-child { text-align: right; }
+    .ticket__rows { padding: 0 18px 12px; border-bottom: 2px dashed var(--rule); }
+    .ticket__rows p { display: flex; justify-content: space-between; gap: 12px; margin: 0; padding: 6px 0; border-bottom: 1px solid var(--rule); font-size: 14px; }
+    .ticket__rows p:last-child { border-bottom: 0; }
+    .ticket__rows p > span:first-child { font: 600 10px/1.9 var(--pixel); letter-spacing: 1px; text-transform: uppercase; color: var(--ink-soft); }
+    .ticket__rows [data-profile] span { color: var(--bad); }
+    .ticket__go { padding: 14px 18px 16px; }
+    .ticket__go p { margin: 0 0 10px; font-size: 14px; color: var(--ink-soft); }
+
+    .modules { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(330px, 100%), 1fr)); gap: 16px; margin-top: 22px; }
+    .module { display: grid; grid-template-columns: 40px minmax(0, 1fr); border: 3px solid var(--ink); background: var(--page); box-shadow: 6px 6px 0 var(--ink); }
+    .module__spine { background: var(--ink); color: var(--leaf-bright); display: flex; align-items: center; justify-content: center; }
+    .module__spine b { writing-mode: vertical-rl; transform: rotate(180deg); font: 700 12px/1 var(--mono); letter-spacing: 2px; }
+    .module__body { padding: 18px 20px 16px; }
+    .module h3 { margin: 0 0 6px; font-family: var(--display); font-size: 19px; }
+    .module > .module__body > p { margin: 0 0 12px; font-size: 14.5px; line-height: 1.45; color: var(--ink-soft); }
+    .module__tag { display: inline-block; margin-bottom: 12px; padding: 3px 9px; border: 2px solid var(--leaf); font: 600 10px/1.5 var(--pixel); letter-spacing: 1px; text-transform: uppercase; color: var(--leaf); }
+    .module.is-goal { box-shadow: 6px 6px 0 var(--leaf); }
+    .toc { margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--rule); }
+    .toc li { margin: 0; border-bottom: 2px solid var(--rule); }
+    .toc li:last-child { border-bottom: 0; }
+    .toc a, .toc s { display: flex; align-items: baseline; gap: 10px; padding: 9px 0; text-decoration: none; font-size: 15px; }
+    .toc a { color: var(--ink); font-weight: 600; }
+    .toc a:hover { color: var(--leaf); }
+    .toc s { color: var(--ink-faint); }
+    .toc a > span, .toc s > span { flex: 1 1 auto; min-width: 0; line-height: 1.35; }
+    .toc b { flex: 0 0 auto; font: 600 12px/1.4 var(--mono); color: var(--ink-faint); }
+    .toc em { flex: 0 0 auto; margin-left: auto; font: 600 10px/1 var(--pixel); letter-spacing: 1px; text-transform: uppercase; font-style: normal; color: var(--leaf); }
+    .toc s em { color: var(--ink-faint); }
+
+    .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 20px 0; }
+    .how > div { padding: 14px 16px; border: 3px solid var(--ink); background: var(--page); box-shadow: 5px 5px 0 var(--leaf); }
+    .how b { display: block; margin-bottom: 6px; font: 600 10.5px/1.4 var(--pixel); letter-spacing: 1.1px; text-transform: uppercase; color: var(--leaf); }
+    .how p { margin: 0; font-size: 14.5px; line-height: 1.5; }
+  </style>
+  <script>
+    try { const p = JSON.parse(localStorage.getItem('en-book-profile') || '{}'); const d = document.documentElement; d.dataset.level = p.level || 'a1'; d.dataset.hint = p.hint || 'both'; d.dataset.tr = p.tr || 'show'; } catch (e) {}
+  </script>
+</head>
+<body>
+  <div class="book">
+    <div class="book__body">
+      <div class="spine"><span>Разговорный английский · Макаров М. Н.</span></div>
+
+      <main class="leaf">
+        <div class="running">
+          <p class="eyebrow">Поездки и переезд</p>
+          <p class="running__folio">Макаров Максим Николаевич</p>
+        </div>
+
+        <section class="cover">
+          <div>
+            <h1>Разговорный<br>английский</h1>
+            <p class="cover__sub">Для поездок и переезда:<br>от аэропорта до аренды квартиры</p>
+            <p>Книга построена по ситуациям, а не по правилам грамматики. Каждая глава — одно место, где придётся говорить: стойка регистрации, гостиница, кафе, аптека, банк. В главе слова этого места, диалог, грамматика, которая нужна именно здесь, и упражнения.</p>
+            <p>У каждого слова две подсказки к произношению — транскрипция и русская запись с ударением — и озвучка голосом. Упражнения делаются перетаскиванием. Фразы, в которых вы ошиблись, возвращаются на повтор по расписанию, поэтому повтор у каждого свой.</p>
+            <div class="cover__meta">
+              <span>A0 → B1</span><span>озвучка US · UK</span><span>IPA + русская подсказка</span><span>упражнения с перетаскиванием</span>
+            </div>
+          </div>
+
+          <aside class="ticket">
+            <div class="ticket__top"><span>Boarding pass</span><span>посадочный талон</span></div>
+            <div class="ticket__route">
+              <div><b>RU</b><span>русский</span></div>
+              <i>✈</i>
+              <div><b>EN</b><span>английский</span></div>
+            </div>
+            <div class="ticket__rows">
+              <p><span>Уровень</span><span data-profile></span></p>
+              <p><span>Цель</span><span id="goal">—</span></p>
+              <p><span>Фраз в работе</span><span id="inwork">0</span></p>
+            </div>
+            <div class="ticket__go">
+              <p id="next-text">Начните со стартовой проверки: она определит уровень и настроит подсказки.</p>
+              <a class="btn btn--dark" id="next-link" href="temy/02-diagnostika/index.html">стартовая проверка →</a>
+            </div>
+          </aside>
+        </section>
+
+        <h2><span class="sec">Как</span>Как устроена глава</h2>
+        <div class="how">
+          <div><b>1 · Слова</b><p>Словарь места по порядку, как слова встретятся. Каждое — со звуком, транскрипцией и русской подсказкой.</p></div>
+          <div><b>2 · Диалог</b><p>Живой разговор с переводом. Режим «роль»: собеседник звучит, свою реплику вы говорите сами и сверяете.</p></div>
+          <div><b>3 · Грамматика</b><p>Только то, что нужно в этом месте: формула фразы и разбор, почему так, а не дословно с русского.</p></div>
+          <div><b>4 · Упражнения</b><p>Перетаскивание: значение, кто говорит, на слух, сборка фразы, пропуски в диалоге.</p></div>
+        </div>
+        <p>Подсказки, перевод, акцент и темп настраиваются в шапке любой страницы. Уровень можно определить <a href="temy/02-diagnostika/index.html">стартовой проверкой</a> или выбрать вручную. Прогресс и повтор хранятся в вашем браузере.</p>
+
+        <div class="review"></div>
+
+        <h2><span class="sec">План</span>Модули и главы</h2>
+        <div class="modules">
+          <article class="module" data-goal="travel move both">
+            <div class="module__spine"><b>МОДУЛЬ 0</b></div>
+            <div class="module__body">
+              <h3>Старт</h3>
+              <p>Как читать транскрипцию, звуки, которых нет в русском, и определение уровня.</p>
+              <ul class="toc">
+                <li><a href="temy/01-kak-chitat/index.html"><b>0.1</b><span>Как читать транскрипцию и слушать слова</span><em data-progress="0.1:3">3 упр.</em></a></li>
+                <li><a href="temy/02-diagnostika/index.html"><b>0.2</b><span>Стартовая проверка</span><em>тест</em></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="module" data-goal="travel both">
+            <div class="module__spine"><b>МОДУЛЬ 1</b></div>
+            <div class="module__body">
+              <h3>Дорога</h3>
+              <span class="module__tag">to be · can · where</span>
+              <p>Аэропорт, паспортный контроль, транспорт из аэропорта и по городу.</p>
+              <ul class="toc">
+                <li><a href="temy/11-aeroport/index.html"><b>1.1</b><span>Аэропорт: регистрация, досмотр, посадка</span><em data-progress="1.1:6">6 упр.</em></a></li>
+                <li><s><b>1.2</b><span>Паспортный контроль и прилёт</span><em>скоро</em></s></li>
+                <li><s><b>1.3</b><span>Такси, метро, билеты</span><em>скоро</em></s></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="module" data-goal="travel both">
+            <div class="module__spine"><b>МОДУЛЬ 2</b></div>
+            <div class="module__body">
+              <h3>Жильё</h3>
+              <span class="module__tag">there is · have</span>
+              <p>Заселение в гостиницу, просьбы и жалобы, квартира посуточно.</p>
+              <ul class="toc">
+                <li><s><b>2.1</b><span>Заселение в гостиницу</span><em>скоро</em></s></li>
+                <li><s><b>2.2</b><span>Что-то сломалось в номере</span><em>скоро</em></s></li>
+                <li><s><b>2.3</b><span>Квартира посуточно: ключи и правила</span><em>скоро</em></s></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="module" data-goal="travel move both">
+            <div class="module__spine"><b>МОДУЛЬ 3</b></div>
+            <div class="module__body">
+              <h3>Еда</h3>
+              <span class="module__tag">some · any · would like</span>
+              <p>Кафе и ресторан, счёт и чаевые, аллергии, магазин и рынок.</p>
+              <ul class="toc">
+                <li><s><b>3.1</b><span>Кафе: заказ и счёт</span><em>скоро</em></s></li>
+                <li><s><b>3.2</b><span>Ресторан, аллергии, чаевые</span><em>скоро</em></s></li>
+                <li><s><b>3.3</b><span>Магазин и рынок</span><em>скоро</em></s></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="module" data-goal="travel move both">
+            <div class="module__spine"><b>МОДУЛЬ 4</b></div>
+            <div class="module__body">
+              <h3>Город</h3>
+              <span class="module__tag">повелительное · how much</span>
+              <p>Как спросить дорогу, оплата и возврат покупок, музеи и экскурсии.</p>
+              <ul class="toc">
+                <li><s><b>4.1</b><span>Спросить и объяснить дорогу</span><em>скоро</em></s></li>
+                <li><s><b>4.2</b><span>Деньги: оплата, сдача, возврат</span><em>скоро</em></s></li>
+                <li><s><b>4.3</b><span>Музеи, экскурсии, билеты</span><em>скоро</em></s></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="module" data-goal="travel move both">
+            <div class="module__spine"><b>МОДУЛЬ 5</b></div>
+            <div class="module__body">
+              <h3>Люди</h3>
+              <span class="module__tag">present simple · past simple</span>
+              <p>Знакомство, рассказ о себе, светская беседа и как не потеряться, если не понял собеседника.</p>
+              <ul class="toc">
+                <li><s><b>5.1</b><span>Знакомство и рассказ о себе</span><em>скоро</em></s></li>
+                <li><s><b>5.2</b><span>Small talk: погода, работа, планы</span><em>скоро</em></s></li>
+                <li><s><b>5.3</b><span>Переспросить, уточнить, попросить помедленнее</span><em>скоро</em></s></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="module" data-goal="travel move both">
+            <div class="module__spine"><b>МОДУЛЬ 6</b></div>
+            <div class="module__body">
+              <h3>Здоровье и помощь</h3>
+              <span class="module__tag">should · have to</span>
+              <p>Аптека, приём у врача, потерянные документы и обращение в полицию.</p>
+              <ul class="toc">
+                <li><s><b>6.1</b><span>Аптека</span><em>скоро</em></s></li>
+                <li><s><b>6.2</b><span>У врача: описать, что болит</span><em>скоро</em></s></li>
+                <li><s><b>6.3</b><span>Потерял документы: полиция и консульство</span><em>скоро</em></s></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="module" data-goal="move both">
+            <div class="module__spine"><b>МОДУЛЬ 7</b></div>
+            <div class="module__body">
+              <h3>Переезд</h3>
+              <span class="module__tag">present perfect · будущее</span>
+              <p>Долгая аренда, банк и SIM-карта, документы, собеседование, телефонный звонок.</p>
+              <ul class="toc">
+                <li><s><b>7.1</b><span>Аренда квартиры надолго</span><em>скоро</em></s></li>
+                <li><s><b>7.2</b><span>Банк и SIM-карта</span><em>скоро</em></s></li>
+                <li><s><b>7.3</b><span>Документы и госучреждения</span><em>скоро</em></s></li>
+                <li><s><b>7.4</b><span>Собеседование и первые дни на работе</span><em>скоро</em></s></li>
+                <li><s><b>7.5</b><span>Телефонный звонок</span><em>скоро</em></s></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="module" data-goal="travel move both">
+            <div class="module__spine"><b>МОДУЛЬ 8</b></div>
+            <div class="module__body">
+              <h3>Собеседник</h3>
+              <span class="module__tag">разговор голосом</span>
+              <p>Разговор с ИИ в роли носителя языка: сотрудник аэропорта, администратор гостиницы, арендодатель. Сценарии берутся из глав, после разговора — разбор ошибок.</p>
+              <ul class="toc">
+                <li><s><b>8.1</b><span>Ролевой разговор по сценарию главы</span><em>в планах</em></s></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <p class="colophon" style="margin-top:40px"><span>Разговорный английский · Макаров Максим Николаевич</span><span>2026</span></p>
+      </main>
+    </div>
+  </div>
+  <script src="english.js"></script>
+  <script>
+  (() => {
+    const { profile, words } = window.EN;
+    const GOALS = { travel: 'путешествия', move: 'переезд', both: 'путешествия и переезд' };
+    document.getElementById('goal').textContent = profile.tested || profile.goal !== 'both' ? GOALS[profile.goal] : '—';
+    document.getElementById('inwork').textContent = Object.values(words).filter(w => w.seen).length;
+    document.querySelectorAll('.module').forEach(m => m.classList.toggle('is-goal', profile.tested && m.dataset.goal.split(' ').includes(profile.goal) && profile.goal !== 'both'));
+
+    // Следующий шаг: проверка, потом первая непройденная глава.
+    let done = {};
+    try { done = JSON.parse(localStorage.getItem('en-book-done') || '{}'); } catch (e) {}
+    if (!profile.tested) return;
+    const chapters = [...document.querySelectorAll('.toc a [data-progress]')].map(em => ({ a: em.closest('a'), prefix: em.dataset.progress.split(':')[0], count: +em.dataset.progress.split(':')[1] }));
+    const skip01 = profile.level === 'b1';
+    const next = chapters.find(c => !(skip01 && c.prefix === '0.1') && Object.keys(done).filter(id => id.startsWith(c.prefix + '-')).length < c.count);
+    const text = document.getElementById('next-text');
+    const link = document.getElementById('next-link');
+    if (next) {
+      text.textContent = 'Следующий шаг по вашему уровню:';
+      link.href = next.a.getAttribute('href');
+      link.textContent = next.a.querySelector('b').textContent + ' ' + next.a.querySelector('span').textContent + ' →';
+    } else {
+      text.textContent = 'Все готовые главы пройдены. Повторяйте фразы в блоке «Повтор» — новые главы появятся в оглавлении.';
+      link.hidden = true;
+    }
+  })();
+  </script>
+</body>
+</html>
