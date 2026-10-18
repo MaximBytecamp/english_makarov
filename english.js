@@ -89,7 +89,9 @@
     document.querySelectorAll('.voice-status').forEach(renderVoiceStatus);
   };
   if (synth) {
-    refreshVoices();
+    // Сначала только список голосов: блок .voice-status рисуется в конце файла,
+    // когда объявлены все функции (иначе ошибка до инициализации sayButton).
+    voices = synth.getVoices();
     synth.addEventListener ? synth.addEventListener('voiceschanged', refreshVoices) : (synth.onvoiceschanged = refreshVoices);
   }
 
@@ -187,6 +189,33 @@
     store(KEY.words, words);
     document.querySelectorAll('.review').forEach(renderReview);
   };
+
+  /* ---- Разбор слова по буквам (.parse) -----------------------------
+     Разметка: [a] — гласная, которая читается; (e) — немая буква;
+     {sh} — сочетание, читается одним звуком; | — граница слога. */
+  document.querySelectorAll('.parse').forEach(el => {
+    const src = el.textContent.trim();
+    const word = src.replace(/[\[\](){}|]/g, '');
+    const text = el.dataset.say || word;
+    const row = h('span', 'parse__letters');
+    src.replace(/\[([^\]]+)\]|\(([^)]+)\)|\{([^}]+)\}|(\|)|([^\[\](){}|])/g, (_, v, mute, combo, bar, plain) => {
+      if (bar) { row.append(h('span', 'pl-gap')); return ''; }
+      if (combo) { row.append(h('span', 'pl c', esc(combo))); return ''; }
+      const chars = v || mute || plain;
+      [...chars].forEach(ch => row.append(h('span', 'pl' + (v ? ' v' : mute ? ' s' : ''), esc(ch))));
+      return '';
+    });
+    el.innerHTML = '';
+    const button = h('button', 'parse__say', '');
+    button.type = 'button';
+    button.title = 'Послушать: ' + text;
+    button.append(row);
+    button.addEventListener('click', () => say(text, { el: button }));
+    el.append(button);
+    if (el.dataset.ipa) el.append(h('span', 'w__ipa', `/${esc(el.dataset.ipa)}/`));
+    if (el.dataset.ru) el.append(h('span', 'w__ru', ru(el.dataset.ru)));
+    remember(word, { ipa: el.dataset.ipa, ru: el.dataset.ru, tr: el.dataset.tr });
+  });
 
   /* ---- 3. Слово, словарь, диалог --------------------------------- */
   document.querySelectorAll('.w').forEach(el => {
@@ -601,9 +630,12 @@
       body.append(stage);
       const item = items[index];
       const tries = { n: 0 };
-      const words1 = item.en.replace(/[.?!]$/, '').split(' ');
-      const mark1 = item.en.match(/[.?!]$/);
-      const step = h('p', 'order__step', `фраза ${index + 1} из ${items.length}`);
+      // spell: слово диктуют по буквам, плитки — буквы, а не слова.
+      const spell = !!item.spell;
+      const spelled = item.en.toUpperCase().replace(/[^A-Z]/g, '').split('');
+      const words1 = spell ? spelled : item.en.replace(/[.?!]$/, '').split(' ');
+      const mark1 = spell ? null : item.en.match(/[.?!]$/);
+      const step = h('p', 'order__step', `${spell ? 'слово' : 'фраза'} ${index + 1} из ${items.length}`);
       const ruLine = h('p', 'order__ru', esc(item.ru) + (item.note ? `<small>${esc(item.note)}</small>` : ''));
       const line = h('div', 'order__line drop');
       line.tabIndex = 0;
@@ -611,13 +643,19 @@
       const pool = h('div', 'pool drop');
       pool.tabIndex = 0;
       shuffle(words1.concat(item.extra || [])).forEach(w => pool.append(makeTile(w, w)));
+      if (spell) line.classList.add('order__line--letters');
       const row = h('div', 'btnrow');
       const check = h('button', 'btn btn--dark', 'проверить');
       const hear = h('button', 'btn', '▶ послушать ответ');
       hear.type = check.type = 'button';
-      hear.hidden = true;
+      hear.hidden = !spell;
+      if (spell) hear.textContent = '▶ послушать по буквам';
       row.append(check, hear);
       stage.append(step, ruLine, line, pool, row);
+      const sayLetters = () => say(spelled.join(', '), { slow: profile.rate === 'slow' });
+      // Первое задание само не звучит: браузеры не дают говорить до первого нажатия,
+      // а несколько упражнений на странице перебивали бы друг друга.
+      if (spell && index > 0) setTimeout(sayLetters, 300);
 
       dnd(stage, (tile, zone, point) => {
         line.classList.remove('is-wrong');
@@ -641,12 +679,12 @@
         (tile.parentElement === line ? pool : line).append(tile);
       });
 
-      hear.addEventListener('click', () => say(item.en));
+      hear.addEventListener('click', () => (spell && !solved ? sayLetters() : say(item.en)));
       let solved = false;
       check.addEventListener('click', () => {
         if (solved) { index += 1; index < items.length ? show() : finish(); return; }
-        const got = [...line.children].map(t => t.dataset.value).join(' ');
-        const ok = norm(got) === norm(item.en) || (item.alt || []).some(a => norm(a) === norm(got));
+        const got = [...line.children].map(t => t.dataset.value).join(spell ? '' : ' ');
+        const ok = spell ? got === spelled.join('') : norm(got) === norm(item.en) || (item.alt || []).some(a => norm(a) === norm(got));
         if (ok) {
           solved = true;
           line.classList.add('is-right');
@@ -658,6 +696,7 @@
           update();
           say(item.en);
           hear.hidden = false;
+          if (spell) hear.textContent = '▶ послушать слово';
           check.textContent = index + 1 < items.length ? 'дальше →' : 'завершить';
         } else {
           tries.n += 1;
@@ -726,7 +765,7 @@
       const step = h('p', 'order__step', `слово ${index + 1} из ${items.length}`);
       const row = h('div', 'listen');
       const play = sayButton(target, { label: 'Послушать ещё раз' });
-      const ear = h('div', 'ear drop', 'положите сюда слово, которое услышали');
+      const ear = h('div', 'ear drop', 'нажмите ▶ и положите сюда слово, которое услышали');
       ear.tabIndex = 0;
       row.append(play, ear);
       const pool = h('div', 'pool drop');
@@ -735,7 +774,7 @@
       slow.append(sayButton(target, { slow: true }), h('span', '', 'медленнее'));
       slow.style.alignItems = 'center';
       stage.append(step, row, pool, slow);
-      setTimeout(() => say(target, { el: play }), 250);
+      if (index > 0) setTimeout(() => say(target, { el: play }), 250);
       dnd(stage, (tile, zone) => {
         if (zone !== ear) return;
         if (tile.dataset.value === target) {

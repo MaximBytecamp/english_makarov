@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#EFEDE6">
+  <title>1.6 Как прочитать незнакомое слово · Разговорный английский</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Literata:ital,opsz,wght@0,7..72,600;0,7..72,700;1,7..72,400&family=Noto+Sans:wght@400;700&family=Pixelify+Sans:wght@500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    .steps { counter-reset: step; display: grid; gap: 10px; margin: 18px 0; padding: 0; list-style: none; }
+    .steps > li { counter-increment: step; display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 12px; margin: 0; padding: 12px 14px; border: 2px solid var(--ink); background: var(--page); }
+    .steps > li::before { content: counter(step); display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: var(--ink); color: var(--leaf-bright); font: 700 15px/1 var(--mono); }
+    .steps b { display: block; margin-bottom: 2px; }
+    .steps p { margin: 0; font-size: 15px; color: var(--ink-soft); }
+    .walk { margin: 20px 0; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: var(--page); }
+    .walk__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 2px solid var(--ink); background: var(--leaf-pale); }
+    .walk__head .parse { margin: 0; }
+    .walk ol { margin: 0; padding: 12px 16px 14px 36px; font-size: 15px; }
+    .walk li { margin-bottom: 5px; }
+  </style>
+  <script>
+    try { const p = JSON.parse(localStorage.getItem('en-book-profile') || '{}'); const d = document.documentElement; d.dataset.level = p.level || 'a1'; d.dataset.hint = p.hint || 'both'; d.dataset.tr = p.tr || 'show'; } catch (e) {}
+  </script>
+</head>
+<body>
+  <div class="book">
+    <div class="book__body">
+      <div class="spine"><span>Модуль 1 · Чтение: буквы и слоги</span></div>
+
+      <main class="leaf">
+        <div class="running">
+          <p class="eyebrow"><a href="../../index.html" style="text-decoration:none;color:inherit">Разговорный английский</a> · модуль 1 · чтение: буквы и слоги</p>
+          <p class="running__folio">Глава 1.6</p>
+        </div>
+
+        <header class="chapter-head">
+          <span class="chapter-num">1.6</span>
+          <h1>Как прочитать<br>незнакомое слово</h1>
+          <p class="lead">Глава собирает правила модуля в один порядок действий: что искать в слове первым, как найти ударный слог, как читать безударные гласные. Порядок разобран на словах с вывесок и из меню. В конце — частые слова, которые читаются не по правилам, и где проверить произношение.</p>
+        </header>
+
+        <dl class="passport">
+          <div><dt>Модуль</dt><dd>1 · Чтение</dd></div>
+          <div><dt>Уровень</dt><dd>С нуля</dd></div>
+          <div><dt>Время</dt><dd>40–60 минут</dd></div>
+          <div><dt>Зачем это знать</dt><dd>Прочитать вывеску, меню или объявление, которых нет в учебнике</dd></div>
+        </dl>
+
+        <nav class="contents">
+          <b>В этой главе</b>
+          <ol>
+            <li><a href="#s1">Порядок разбора</a></li>
+            <li><a href="#s2">Где ударение</a></li>
+            <li><a href="#s3">Разбор на примерах</a></li>
+            <li><a href="#s4">Слова не по правилам</a></li>
+            <li><a href="#s5">Где проверить произношение</a></li>
+            <li><a href="#s6">Упражнения</a></li>
+            <li><a href="#s7">Итог модуля</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="s1"><span class="sec">§1</span>Порядок разбора</h2>
+        <p>Правила из глав 1.2–1.5 применяются в определённом порядке. Если сразу читать слово слева направо по одной букве, сочетания и окончания распадутся на отдельные звуки. Поэтому сначала находят крупные части, потом мелкие.</p>
+        <ol class="steps">
+          <li><div><b>Отделить окончание и суффикс</b><p>-s, -ed, -ing, -tion, -ture, -ful. Они читаются по своим правилам — <a href="../15-dva-chteniya/index.html#s5">глава 1.5</a>.</p></div></li>
+          <li><div><b>Найти сочетания букв</b><p>Сначала согласные (sh, ch, th, ck, ng, igh), потом гласные (ee, ea, oo, ai, ou). Каждое сочетание — один звук. Отметить немые буквы: kn, wr, mb.</p></div></li>
+          <li><div><b>Найти ударный слог</b><p>Правила ударения — в §2. В коротком слове из одного слога ударение одно.</p></div></li>
+          <li><div><b>Прочитать ударную гласную по типу слога</b><p>Открытый — как название буквы, закрытый — кратко, с r — по третьему и четвёртому типу (<a href="../12-slogi/index.html#s5">глава 1.2, §5</a>).</p></div></li>
+          <li><div><b>Ослабить безударные гласные</b><p>Безударная гласная обычно звучит как шва <code>ə</code> — короткое неясное «э».</p></div></li>
+          <li><div><b>Сверить со звуком</b><p>Послушать слово в словаре или здесь, нажав на него. Если чтение не совпало — запомнить слово как исключение.</p></div></li>
+        </ol>
+
+        <h2 id="s2"><span class="sec">§2</span>Где ударение</h2>
+        <p>Строгого правила ударения в английском нет, но есть закономерности, которые срабатывают в большинстве слов.</p>
+        <ul>
+          <li><b>Существительные и прилагательные из двух слогов</b> — чаще всего ударение на первом слоге: <span class="w" data-ipa="ˈteɪbl" data-ru="ТЕЙбл">table</span>, <span class="w" data-ipa="ˈtɪkɪt" data-ru="ТИкит">ticket</span>, <span class="w" data-ipa="ˈwɪndoʊ" data-ru="УИНдоу">window</span>, <span class="w" data-ipa="ˈhæpi" data-ru="ХЭпи">happy</span>.</li>
+          <li><b>Глаголы из двух слогов</b> — часто на втором: <span class="w" data-ipa="bɪˈɡɪn" data-ru="биГИН">begin</span>, <span class="w" data-ipa="əˈraɪv" data-ru="эРАЙВ">arrive</span>, <span class="w" data-ipa="rɪˈtɜːrn" data-ru="риТЁРН">return</span>.</li>
+          <li><b>Слова на -tion, -sion, -ic</b> — на слоге перед суффиксом: <span class="w" data-ipa="ˌɪnfərˈmeɪʃn" data-ru="инфэрМЕЙшн">information</span>, <span class="w" data-ipa="ˈmjuːzɪk" data-ru="МЬЮЗик">music</span>.</li>
+          <li><b>Приставки</b> be-, re-, de-, a- обычно безударные: <i>be-GIN, re-TURN, de-LAYED, a-BOUT</i>.</li>
+        </ul>
+        <p>Есть пары, где одно слово — существительное, другое — глагол, и они различаются только ударением: <span class="w" data-ipa="ˈrekərd" data-ru="РЕкэрд">record</span> — запись, <span class="w" data-ipa="rɪˈkɔːrd" data-ru="риКОРД" data-say="to record">to record</span> — записывать. <span class="w" data-ipa="ˈpreznt" data-ru="ПРЕзнт">present</span> — подарок, <span class="w" data-ipa="prɪˈzent" data-ru="приЗЕНТ" data-say="to present">to present</span> — представлять.</p>
+        <div class="margin-note">
+          <b>Ударение в заимствованных словах</b>
+          <p>Многие английские слова похожи на русские, но ударение у них другое. Если поставить ударение «по-русски», слово могут не узнать: <span class="w" data-ipa="hoʊˈtel" data-ru="хоуТЕЛ">hotel</span> совпадает, а <span class="w" data-ipa="ˈæktʃuəli" data-ru="ЭКчуэли">actually</span>, <span class="w" data-ipa="ˈɪntrəstɪŋ" data-ru="ИНтрэстин(г)">interesting</span>, <span class="w" data-ipa="ˈkæləndər" data-ru="КЭлэндэр">calendar</span>, <span class="w" data-ipa="ˈæθliːt" data-ru="Э{с}лиит">athlete</span> — нет: в них ударение на первом слоге.</p>
+        </div>
+
+        <h2 id="s3"><span class="sec">§3</span>Разбор на примерах</h2>
+        <p>Три слова, которые встретятся в поездке, разобраны по шагам из §1. Попробуйте сначала прочитать слово сами, потом раскройте разбор и сверьте.</p>
+
+        <div class="walk">
+          <div class="walk__head"><span class="parse" data-ipa="ˈtʃekɪn" data-ru="ЧЕКин" data-say="check-in" data-tr="регистрация">{ch}[e]{ck}|in</span><span class="ex__kind">вывеска в аэропорту</span></div>
+          <ol>
+            <li>Окончаний нет.</li>
+            <li>Сочетания: <b>ch</b> — «ч», <b>ck</b> — «к».</li>
+            <li>Ударение на первой части: <i>CHECK-in</i>.</li>
+            <li>В <i>check</i> после e стоит согласная — слог закрыт, e краткое: «чек».</li>
+            <li><i>in</i> — краткое «и». Итог: «ЧЕКин».</li>
+          </ol>
+        </div>
+
+        <div class="walk">
+          <div class="walk__head"><span class="parse" data-ipa="ˈbrekfəst" data-ru="БРЕКфэст" data-tr="завтрак">br{ea}k|f[a]st</span><span class="ex__kind">меню в гостинице</span></div>
+          <ol>
+            <li>Окончаний нет.</li>
+            <li>Сочетание <b>ea</b>. Основное чтение — «ии», но <i>breakfast</i> из группы слов с кратким «е» (<a href="../14-glasnye/index.html#s4">глава 1.4, §4</a>).</li>
+            <li>Существительное из двух слогов — ударение на первом: <i>BREAK-fast</i>.</li>
+            <li>Ударный слог: «брек».</li>
+            <li>a во втором слоге безударная — шва: «фэст». Итог: «БРЕКфэст».</li>
+          </ol>
+        </div>
+
+        <div class="walk">
+          <div class="walk__head"><span class="parse" data-ipa="dɪˈpɑːrtʃərz" data-ru="диПАРчэрз" data-tr="вылеты">de|p{ar}|{ture}s</span><span class="ex__kind">табло</span></div>
+          <ol>
+            <li>Окончание <b>-s</b> после гласного звука — «з». Суффикс <b>-ture</b> — «чэр».</li>
+            <li>Сочетание <b>ar</b> — третий тип слога, «ар».</li>
+            <li>Приставка <i>de-</i> безударная, ударение на <i>-par-</i>.</li>
+            <li>Ударный слог: «пар».</li>
+            <li><i>de-</i> без ударения — «ди». Итог: «диПАРчэрз».</li>
+          </ol>
+        </div>
+
+        <h2 id="s4"><span class="sec">§4</span>Слова не по правилам</h2>
+        <p>Около сотни очень частых слов читаются не по правилам: они старые, и произношение в них сильно изменилось. Эти слова встречаются в каждом разговоре, поэтому выучить их проще, чем кажется. Ниже — те, что понадобятся в поездке.</p>
+        <div class="vocab" data-title="Частые слова не по правилам">
+          <script type="application/json">[
+            ["one", "wʌn", "УАН", "один"],
+            ["two", "tuː", "ТУУ", "два"],
+            ["said", "sed", "СЕД", "сказал"],
+            ["says", "sez", "СЕЗ", "говорит"],
+            ["does", "dʌz", "ДАЗ", "делает"],
+            ["do", "duː", "ДУУ", "делать"],
+            ["who", "huː", "ХУУ", "кто"],
+            ["what", "wʌt", "УАТ", "что"],
+            ["want", "wɑːnt", "УАНТ", "хотеть"],
+            ["any", "ˈeni", "Эни", "какой-нибудь"],
+            ["many", "ˈmeni", "МЕни", "много"],
+            ["friend", "frend", "ФРЕНД", "друг"],
+            ["people", "ˈpiːpl", "ПИИпл", "люди"],
+            ["women", "ˈwɪmɪn", "УИмин", "женщины"],
+            ["busy", "ˈbɪzi", "БИзи", "занятый"],
+            ["eye", "aɪ", "АЙ", "глаз"],
+            ["buy", "baɪ", "БАЙ", "покупать"],
+            ["again", "əˈɡen", "эГЕН", "снова"],
+            ["island", "ˈaɪlənd", "АЙлэнд", "остров"],
+            ["foreign", "ˈfɔːrən", "ФОрэн", "иностранный"],
+            ["receipt", "rɪˈsiːt", "риСИИТ", "чек"],
+            ["Wednesday", "ˈwenzdeɪ", "УЭНЗдэй", "среда"],
+            ["iron", "ˈaɪərn", "АЙэрн", "утюг"]
+          ]</script>
+        </div>
+
+        <h2 id="s5"><span class="sec">§5</span>Где проверить произношение</h2>
+        <ul>
+          <li><b><a href="https://dictionary.cambridge.org/" target="_blank" rel="noopener">Cambridge Dictionary</a></b> — у каждого слова британская и американская транскрипция и запись голоса. Значки те же, что в этой книге.</li>
+          <li><b><a href="https://www.merriam-webster.com/" target="_blank" rel="noopener">Merriam-Webster</a></b> — американский словарь с записью голоса. У него своя система значков, не IPA: смотрите на кнопку звука.</li>
+          <li><b><a href="https://youglish.com/" target="_blank" rel="noopener">YouGlish</a></b> — показывает отрывки из настоящих видео, где люди говорят это слово. Полезно, чтобы услышать слово в быстрой речи разными голосами.</li>
+        </ul>
+        <p>Если словарь и ваше прочтение по правилам разошлись, верен словарь. Правила помогают угадать произношение в большинстве случаев, но не во всех.</p>
+
+        <h2 id="s6"><span class="sec">§6</span>Упражнения</h2>
+        <div class="ex" data-type="match" data-id="1.6-udarenie">
+          <script type="application/json">{
+            "title": "Где ударение",
+            "task": "Положите слово к подсказке с верным ударением. Выделен ударный слог.",
+            "labelHint": true,
+            "track": false,
+            "pairs": [["ticket","ТИкит"],["arrive","эРАЙВ"],["hotel","хоуТЕЛ"],["station","СТЕЙшн"],["delayed","диЛЕЙД"],["calendar","КЭлэндэр"]]
+          }</script>
+        </div>
+
+        <div class="ex" data-type="sort" data-id="1.6-pravila">
+          <script type="application/json">{
+            "title": "По правилам или нет",
+            "task": "Прочитайте слово по правилам модуля и послушайте его, когда положите. Совпало — слово читается по правилам.",
+            "buckets": ["Читается по правилам", "Исключение"],
+            "items": [["cake",0],["sleep",0],["night",0],["boat",0],["shop",0],["park",0],["one",1],["said",1],["women",1],["busy",1],["people",1],["friend",1]]
+          }</script>
+        </div>
+
+        <div class="ex" data-type="listen" data-id="1.6-sluh">
+          <script type="application/json">{
+            "title": "Слова с вывесок на слух",
+            "task": "Звучит одно слово. Положите его в рамку.",
+            "items": [["exit","exist"],["arrivals","rivals"],["pharmacy","farmer"],["station","nation"],["receipt","recipe"],["luggage","language"]]
+          }</script>
+        </div>
+
+        <h2 id="s7"><span class="sec">§7</span>Итог модуля</h2>
+        <p>После модуля 1 короткие слова читаются по правилам, а длинные — по порядку из §1. Если упражнения модуля даются с ошибками, повторите главы 1.2 и 1.4: на типах слога и сочетаниях гласных держится больше всего слов. Следующий модуль — разговорные ситуации, начиная с аэропорта. Все слова там даны с подсказками, а правила этого модуля помогут понять, почему слово читается именно так.</p>
+        <div class="cheat">
+          <div><b>Порядок</b><code>1. окончания и суффиксы</code><code>2. сочетания, немые буквы</code><code>3. ударный слог</code><code>4. тип слога</code><code>5. шва в безударных</code><code>6. сверить со звуком</code></div>
+          <div><b>Ударение</b><code>существительное из 2 слогов — 1-й</code><code>глагол из 2 слогов — часто 2-й</code><code>-tion, -ic — перед суффиксом</code><code>be-, re-, de-, a- — без ударения</code></div>
+        </div>
+
+        <div class="review"></div>
+
+        <nav class="pager">
+          <a href="../15-dva-chteniya/index.html">← 1.5 Буквы с двумя чтениями</a>
+          <a href="../21-aeroport/index.html">2.1 Аэропорт →</a>
+        </nav>
+        <p class="colophon"><span>Разговорный английский · Макаров Максим Николаевич</span><span>Глава 1.6</span></p>
+      </main>
+    </div>
+  </div>
+  <script src="../../english.js"></script>
+</body>
+</html>

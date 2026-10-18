@@ -682,4 +682,23 @@ html[data-level="a2"] [data-for]:not([data-for~="a2"]),
 html[data-level="b1"] [data-for]:not([data-for~="b1"]) { display: none; }
 .lvl { display: inline-block; margin-right: 6px; padding: 2px 7px; border: 2px solid var(--violet); color: var(--violet); font: 600 9.5px/1.4 var(--pixel); letter-spacing: 1px; text-transform: uppercase; vertical-align: 2px; }
 
+/* Разбор слова по буквам: каждая буква — клетка. */
+.parse { display: inline-flex; flex-direction: column; align-items: flex-start; vertical-align: top; margin: 4px 10px 8px 0; line-height: 1.25; }
+.parse__say { padding: 0; border: 0; background: none; cursor: pointer; }
+.parse__letters { display: inline-flex; gap: 3px; }
+.pl { display: inline-flex; align-items: center; justify-content: center; min-width: 28px; height: 36px; padding: 0 5px; border: 2px solid var(--ink); background: #fff; color: var(--ink); font: 600 19px/1 var(--mono); }
+.pl.v { background: var(--leaf-pale); border-color: var(--leaf); color: var(--leaf); font-weight: 700; }
+.pl.c { background: var(--clay-pale); border-color: var(--clay); color: var(--clay); font-weight: 700; }
+.pl.s { border-style: dashed; border-color: var(--ink-faint); color: var(--ink-faint); text-decoration: line-through; }
+.pl-gap { width: 2px; margin: 0 5px; background: repeating-linear-gradient(var(--ink-soft) 0 4px, transparent 4px 7px); }
+.parse__say:hover .pl, .parse__say.is-playing .pl { box-shadow: 0 3px 0 var(--ink); }
+.parse-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 10px 0 18px; font-size: 14px; color: var(--ink-soft); }
+.parse-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.parse-legend .pl { min-width: 22px; height: 26px; font-size: 14px; }
+.order__line--letters .tile, .pool .tile.is-letter { font-family: var(--mono); }
+
+/* Таблица «правило — примеры» с клетками разбора. */
+.rules td { vertical-align: middle; }
+.rules td:first-child { white-space: nowrap; font: 700 15px/1.3 var(--mono); }
+
 [hidden] { display: none !important; }
