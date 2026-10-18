@@ -471,9 +471,16 @@
 
   /* ---- Упражнения ----------------------------------------------- */
   const KINDS = {
-    match: 'сопоставление', sort: 'сортировка', order: 'сборка фразы', gap: 'пропуски', listen: 'на слух',
+    match: 'сопоставление', sort: 'сортировка', order: 'сборка фразы', gap: 'пропуски', listen: 'на слух', type: 'диктант',
   };
   const done = load(KEY.done, {});
+  // Аэропорт был главой 1.1, потом 2.1, теперь 3.1: прогресс переносится под новый номер.
+  ['znachenie', 'kto', 'sluh', 'sborka', 'dialog', 'tablo'].forEach(name => {
+    ['1.1-', '2.1-'].forEach(old => {
+      if (done[old + name] && !done['3.1-' + name]) { done['3.1-' + name] = done[old + name]; delete done[old + name]; }
+    });
+  });
+  store(KEY.done, done);
 
   const exercise = (box, spec, { onFinish } = {}) => {
     box.innerHTML = '';
@@ -521,7 +528,7 @@
       if (onFinish) onFinish(state);
     };
 
-    const handlers = { match: runMatch, sort: runSort, order: runOrder, gap: runGap, listen: runListen };
+    const handlers = { match: runMatch, sort: runSort, order: runOrder, gap: runGap, listen: runListen, type: runType };
     (handlers[type] || (() => { body.textContent = 'Неизвестный вид упражнения: ' + type; }))(body, spec, state, updateScore, finish);
     updateScore();
   };
@@ -533,6 +540,7 @@
     if (type === 'sort') copy.items = spec.items.filter(p => keep.has(p[0]));
     if (type === 'order') copy.items = spec.items.filter(p => keep.has(p.en));
     if (type === 'listen') copy.items = spec.items.filter(p => keep.has(p.join('|')));
+    if (type === 'type') copy.items = spec.items.filter(p => keep.has(p.answer));
     if (type === 'gap') return spec;
     return copy;
   };
@@ -713,6 +721,68 @@
           }
         }
       });
+    };
+    show();
+  }
+
+  // Диктант: звучит число, время или фраза — ответ печатается в поле.
+  // Пробелы, дефисы, точки, запятые, двоеточие и знак $ при сравнении не учитываются.
+  function runType(body, spec, state, update, finish) {
+    const items = spec.shuffle === false ? spec.items.slice() : shuffle(spec.items);
+    const clean = v => String(v).toLowerCase().replace(/[\s\-–—.,:$€£()+]/g, '');
+    state.total = items.length;
+    let index = 0;
+    const show = () => {
+      body.innerHTML = '';
+      const item = items[index];
+      let tries = 0, solved = false;
+      body.append(h('p', 'order__step', `задание ${index + 1} из ${items.length}`));
+      if (item.ru) body.append(h('p', 'order__ru', esc(item.ru)));
+      const row = h('div', 'listen');
+      const play = sayButton(item.say, { label: 'Послушать ещё раз' });
+      const input = h('input', 'typein');
+      input.type = 'text';
+      input.autocomplete = 'off';
+      input.inputMode = /^[\d\s:.,$€£+-]+$/.test(item.answer) ? 'decimal' : 'text';
+      input.placeholder = item.placeholder || 'нажмите ▶ и запишите';
+      input.setAttribute('aria-label', 'Ответ');
+      row.append(play, input);
+      const btns = h('div', 'btnrow');
+      const check = h('button', 'btn btn--dark', 'проверить');
+      check.type = 'button';
+      btns.append(check, sayButton(item.say, { slow: true }), h('span', 'order__step', 'медленнее'));
+      btns.style.alignItems = 'center';
+      body.append(row, btns);
+      if (index > 0) { setTimeout(() => say(item.say, { el: play }), 250); input.focus({ preventScroll: true }); }
+      const go = () => {
+        if (solved) { index += 1; index < items.length ? show() : finish(); return; }
+        const got = clean(input.value);
+        if (!got) return;
+        const ok = [item.answer].concat(item.alt || []).some(a => clean(a) === got);
+        input.classList.remove('is-right', 'is-wrong');
+        void input.offsetWidth;
+        if (ok) {
+          solved = true;
+          input.classList.add('is-right');
+          input.readOnly = true;
+          state.right += 1;
+          update();
+          body.append(h('p', 'order__answer', `<b>${esc(item.answer)}</b>${item.how ? ' — ' + esc(item.how) : ''}`));
+          check.textContent = index + 1 < items.length ? 'дальше →' : 'завершить';
+        } else {
+          tries += 1;
+          state.mistakes += 1;
+          if (!state.missed.includes(item.answer)) state.missed.push(item.answer);
+          input.classList.add('is-wrong');
+          update();
+          say(item.say, { el: play });
+          if (tries >= 2 && !body.querySelector('.order__answer')) {
+            body.append(h('p', 'order__answer', `Правильно: <b>${esc(item.answer)}</b>${item.how ? ' — ' + esc(item.how) : ''}`));
+          }
+        }
+      };
+      check.addEventListener('click', go);
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); go(); } });
     };
     show();
   }

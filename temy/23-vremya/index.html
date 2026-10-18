@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#EFEDE6">
+  <title>2.3 Время: часы, расписание, сколько длится · Разговорный английский</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Literata:ital,opsz,wght@0,7..72,600;0,7..72,700;1,7..72,400&family=Noto+Sans:wght@400;700&family=Pixelify+Sans:wght@500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    .clock { display: grid; grid-template-columns: minmax(200px, 260px) minmax(0, 1fr); gap: 22px; align-items: center; margin: 20px 0; }
+    .clock svg { width: 100%; height: auto; }
+    .clock .face { fill: var(--page); stroke: var(--ink); stroke-width: 4; }
+    .clock .past { fill: var(--leaf-pale); }
+    .clock .to { fill: var(--clay-pale); }
+    .clock text { font: 700 13px var(--mono); fill: var(--ink); }
+    .clock .lab { font: 600 11px var(--pixel); letter-spacing: 1px; }
+    .clock .lab-past { fill: var(--leaf); }
+    .clock .lab-to { fill: var(--clay); }
+    @media (max-width: 620px) { .clock { grid-template-columns: 1fr; } .clock svg { max-width: 260px; } }
+  </style>
+  <script>
+    try { const p = JSON.parse(localStorage.getItem('en-book-profile') || '{}'); const d = document.documentElement; d.dataset.level = p.level || 'a1'; d.dataset.hint = p.hint || 'both'; d.dataset.tr = p.tr || 'show'; } catch (e) {}
+  </script>
+</head>
+<body>
+  <div class="book">
+    <div class="book__body">
+      <div class="spine"><span>Модуль 2 · Числа, время, даты, деньги</span></div>
+
+      <main class="leaf">
+        <div class="running">
+          <p class="eyebrow"><a href="../../index.html" style="text-decoration:none;color:inherit">Разговорный английский</a> · модуль 2 · числа, время, даты, деньги</p>
+          <p class="running__folio">Глава 2.3</p>
+        </div>
+
+        <header class="chapter-head">
+          <span class="chapter-num">2.3</span>
+          <h1>Время: часы, расписание,<br>сколько длится</h1>
+          <p class="lead">Время по-английски называют двумя способами: по цифрам, как на электронных часах, и словами past и to, как по стрелкам. В главе разобраны оба, а также a.m. и p.m. вместо 24-часового формата, предлоги at, in, on со временем и вопросы «во сколько?» и «сколько длится?».</p>
+        </header>
+
+        <dl class="passport">
+          <div><dt>Модуль</dt><dd>2 · Числа, время, даты, деньги</dd></div>
+          <div><dt>Уровень</dt><dd>A1</dd></div>
+          <div><dt>Время</dt><dd>50–60 минут</dd></div>
+          <div><dt>Зачем это знать</dt><dd>Не опоздать на посадку, завтрак и поезд</dd></div>
+        </dl>
+
+        <nav class="contents">
+          <b>В этой главе</b>
+          <ol>
+            <li><a href="#s1">Как спросить время</a></li>
+            <li><a href="#s2">По цифрам: 3:15 — three fifteen</a></li>
+            <li><a href="#s3">По стрелкам: past и to</a></li>
+            <li><a href="#s4">a.m. и p.m.</a></li>
+            <li><a href="#s5">Предлоги at, in, on</a></li>
+            <li><a href="#s6">Сколько длится</a></li>
+            <li><a href="#s7">Упражнения</a></li>
+            <li><a href="#s8">Шпаргалка</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="s1"><span class="sec">§1</span>Как спросить время</h2>
+        <div class="vocab" data-title="Время">
+          <script type="application/json">[
+            ["What time is it?", "wʌt taɪm ɪz ɪt", "уат ТАЙМ из ит?", "Который час?"],
+            ["What time does it start?", "wʌt taɪm dʌz ɪt stɑːrt", "уат ТАЙМ даз ит СТАРТ?", "Во сколько начинается?"],
+            ["It's three o'clock.", "ɪts θriː əˈklɑːk", "итс {С}РИИ эКЛАК", "Три часа ровно."],
+            ["hour", "ˈaʊər", "АУэр", "час"],
+            ["minute", "ˈmɪnɪt", "МИнит", "минута"],
+            ["half", "hæf", "ХЭФ", "половина"],
+            ["quarter", "ˈkwɔːrtər", "КУОРдэр", "четверть"],
+            ["noon", "nuːn", "НУУН", "полдень"],
+            ["midnight", "ˈmɪdnaɪt", "МИДнайт", "полночь"]
+          ]</script>
+        </div>
+        <p>Ответ начинается с <b>It's</b>: <i>It's three o'clock</i>. Слово <i>o'clock</i> ставят только к ровному часу: <i>three o'clock</i>, но не «three fifteen o'clock».</p>
+
+        <h2 id="s2"><span class="sec">§2</span>По цифрам: 3:15 — three fifteen</h2>
+        <p>Самый простой способ — назвать часы и минуты двумя числами, как они написаны на электронных часах. Так говорят в аэропортах, на вокзалах, в расписаниях, и в США так говорят чаще всего.</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Время</th><th>Как говорят</th></tr></thead>
+            <tbody>
+              <tr><td><b>3:15</b></td><td><span class="w" data-say="three fifteen" data-tr="3:15">three fifteen</span></td></tr>
+              <tr><td><b>7:40</b></td><td><span class="w" data-say="seven forty" data-tr="7:40">seven forty</span></td></tr>
+              <tr><td><b>9:05</b></td><td><span class="w" data-say="nine oh five" data-tr="9:05">nine oh five</span> — минуты меньше десяти читают с «oh»</td></tr>
+              <tr><td><b>11:30</b></td><td><span class="w" data-say="eleven thirty" data-tr="11:30">eleven thirty</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="s3"><span class="sec">§3</span>По стрелкам: past и to</h2>
+        <p>Второй способ — как по стрелочным часам. Первую половину часа считают <b>после</b> часа (<i>past</i>), вторую — <b>до</b> следующего часа (<i>to</i>). Так чаще говорят в Великобритании; в США вместо <i>past</i> говорят и <i>after</i>, вместо <i>to</i> — <i>of</i>.</p>
+        <div class="clock">
+          <svg viewBox="0 0 220 220" role="img" aria-label="Циферблат: правая половина — past, после часа; левая — to, до следующего часа">
+            <circle class="face" cx="110" cy="110" r="100"/>
+            <path class="past" d="M110 110 L110 14 A96 96 0 0 1 110 206 Z"/>
+            <path class="to" d="M110 110 L110 206 A96 96 0 0 1 110 14 Z"/>
+            <line x1="110" y1="10" x2="110" y2="210" stroke="#13213C" stroke-width="2" stroke-dasharray="4 4"/>
+            <text x="110" y="40" text-anchor="middle" style="paint-order:stroke;stroke:#FFFDF7;stroke-width:5px">o'clock</text>
+            <text x="160" y="114" text-anchor="middle">quarter</text>
+            <text x="110" y="192" text-anchor="middle" style="paint-order:stroke;stroke:#FFFDF7;stroke-width:5px">half</text>
+            <text x="60" y="114" text-anchor="middle">quarter</text>
+            <text class="lab lab-past" x="152" y="70" text-anchor="middle">PAST</text>
+            <text class="lab lab-to" x="68" y="70" text-anchor="middle">TO</text>
+          </svg>
+          <div>
+            <p><b>Правая половина</b> — <i>past</i>: прошло столько-то минут после часа. 3:10 — <i>ten past three</i>.</p>
+            <p><b>Левая половина</b> — <i>to</i>: осталось столько-то минут до следующего часа. 3:50 — <i>ten to four</i>, «без десяти четыре».</p>
+            <p>15 минут — <i>quarter</i>, четверть; 30 минут — <i>half</i>. Половину называют только с <i>past</i>: <i>half past three</i> — 3:30.</p>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Время</th><th>По стрелкам</th><th>По цифрам</th></tr></thead>
+            <tbody>
+              <tr><td><b>3:10</b></td><td><span class="w" data-tr="3:10">ten past three</span></td><td>three ten</td></tr>
+              <tr><td><b>3:15</b></td><td><span class="w" data-tr="3:15">quarter past three</span></td><td>three fifteen</td></tr>
+              <tr><td><b>3:30</b></td><td><span class="w" data-tr="3:30">half past three</span></td><td>three thirty</td></tr>
+              <tr><td><b>3:45</b></td><td><span class="w" data-tr="3:45">quarter to four</span></td><td>three forty-five</td></tr>
+              <tr><td><b>3:50</b></td><td><span class="w" data-tr="3:50">ten to four</span></td><td>three fifty</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="margin-note margin-note--warn">
+          <b>half three — это не 2:30</b>
+          <p>В британской речи <i>half three</i> значит <b>половина после трёх</b>, то есть 3:30. По-русски «полтретьего» — это 2:30. Здесь легко ошибиться на час.</p>
+        </div>
+
+        <h2 id="s4"><span class="sec">§4</span>a.m. и p.m.</h2>
+        <p>В разговоре по-английски почти не пользуются 24-часовым форматом. Вместо 15:00 говорят «три часа дня» — <i>three p.m.</i>. Сокращения ставят после времени:</p>
+        <ul>
+          <li><span class="w" data-ipa="ˌeɪ ˈem" data-ru="эй-ЭМ" data-tr="до полудня">a.m.</span> — от полуночи до полудня: 7 a.m. — 7:00 утра.</li>
+          <li><span class="w" data-ipa="ˌpiː ˈem" data-ru="пи-ЭМ" data-tr="после полудня">p.m.</span> — от полудня до полуночи: 7 p.m. — 19:00.</li>
+        </ul>
+        <p>Вместо сокращений часто говорят словами: <i>in the morning</i> — утра, <i>in the afternoon</i> — дня, <i>in the evening</i> — вечера, <i>at night</i> — ночи. 12:00 — <i>noon</i>, 0:00 — <i>midnight</i>: так надёжнее, чем 12 a.m. и 12 p.m., которые путают и сами носители.</p>
+        <p>На табло, в билетах и в Европе время пишут в 24-часовом формате, а читают по-разному: <i>fourteen thirty-five</i> или <i>two thirty-five p.m.</i>. Понимать нужно оба варианта.</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>На табло</th><th>Как скажут</th></tr></thead>
+            <tbody>
+              <tr><td><b>07:20</b></td><td><span class="w" data-say="seven twenty a.m.">seven twenty a.m.</span></td></tr>
+              <tr><td><b>14:35</b></td><td><span class="w" data-say="two thirty-five p.m.">two thirty-five p.m.</span> или <span class="w" data-say="fourteen thirty-five">fourteen thirty-five</span></td></tr>
+              <tr><td><b>21:00</b></td><td><span class="w" data-say="nine p.m.">nine p.m.</span> или <span class="w" data-say="nine in the evening">nine in the evening</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="s5"><span class="sec">§5</span>Предлоги at, in, on</h2>
+        <p>Русское «в» в выражениях времени переводится тремя разными предлогами. Выбор зависит от того, насколько большой отрезок времени:</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Предлог</th><th>С чем</th><th>Примеры</th></tr></thead>
+            <tbody>
+              <tr><td><b>at</b></td><td>точное время</td><td>at 7:30, at noon, at midnight, at night</td></tr>
+              <tr><td><b>on</b></td><td>день</td><td>on Monday, on May 6th, on the weekend (США)</td></tr>
+              <tr><td><b>in</b></td><td>часть дня, месяц, год</td><td>in the morning, in October, in 2026</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Удобно запомнить от меньшего к большему: точка — <b>at</b>, день — <b>on</b>, всё длиннее дня — <b>in</b>. Исключение — <i>at night</i>.</p>
+
+        <h2 id="s6"><span class="sec">§6</span>Сколько длится</h2>
+        <div class="dialog">
+          <script type="application/json">{
+            "title": "Расписание поезда",
+            "you": "Пассажир",
+            "them": "Кассир",
+            "lines": [
+              ["clerk", "The next train leaves at ten forty.", "Следующий поезд отправляется в 10:40.", "{з}э НЕКСТ трейн ЛИИВЗ эт тен ФОРди."],
+              ["you", "How long does it take to get to the airport?", "Сколько ехать до аэропорта?", "хау ЛОН(г) даз ит ТЕЙК тэ гет тэ {з}и ЭРпорт?"],
+              ["clerk", "About forty minutes.", "Около сорока минут.", "эБАУТ ФОРди МИнитс."],
+              ["you", "And how often do the trains run?", "А как часто ходят поезда?", "эн хау ОФн ду {з}э ТРЕЙНЗ РАН?"],
+              ["clerk", "Every fifteen minutes until midnight.", "Каждые пятнадцать минут до полуночи.", "Эври фифТИИН МИнитс энТИЛ МИДнайт."]
+            ]
+          }</script>
+        </div>
+        <ul>
+          <li><b>How long does it take?</b> — «сколько времени занимает?». Ответ: <i>about forty minutes</i>, <i>an hour and a half</i> — полтора часа, <i>half an hour</i> — полчаса.</li>
+          <li><b>How often?</b> — «как часто?». Ответ: <i>every fifteen minutes</i> — каждые 15 минут.</li>
+          <li><b>until</b> — «до» (какого-то времени): <i>until midnight</i>. <b>from … to …</b> — «с … до …»: <i>from 7 to 10 a.m.</i>, так пишут часы завтрака.</li>
+        </ul>
+        <div class="margin-note">
+          <b>an hour — с an</b>
+          <p>В <i>hour</i> буква h немая (<a href="../13-soglasnye/index.html#s5">глава 1.3, §5</a>), слово начинается с гласного звука. Поэтому <i>an hour</i>, а не <i>a hour</i>.</p>
+        </div>
+
+        <h2 id="s7"><span class="sec">§7</span>Упражнения</h2>
+        <div class="ex" data-type="listen" data-id="2.3-sluh">
+          <script type="application/json">{
+            "title": "Время на слух",
+            "task": "Звучит время по цифрам. Положите в рамку то, что услышали.",
+            "items": [["3:15","3:50","2:45"],["7:13","7:30","7:03"],["9:05","9:50","5:09"],["11:40","11:14","10:40"],["6:18","6:08","8:16"]]
+          }</script>
+        </div>
+
+        <div class="ex" data-type="match" data-id="2.3-strelki">
+          <script type="application/json">{
+            "title": "По стрелкам",
+            "task": "Положите выражение к времени на часах.",
+            "pairs": [["ten past three","3:10"],["quarter past three","3:15"],["half past three","3:30"],["quarter to four","3:45"],["ten to four","3:50"],["twenty past eight","8:20"]]
+          }</script>
+        </div>
+
+        <div class="ex" data-type="type" data-id="2.3-diktant">
+          <script type="application/json">{
+            "title": "Запишите время",
+            "task": "Запишите время цифрами в 24-часовом формате, как привыкли: 14:35.",
+            "items": [
+              {"say": "Breakfast starts at seven thirty a.m.", "answer": "7:30", "alt": ["07:30"], "ru": "Когда начинается завтрак?"},
+              {"say": "Check-out is at eleven a.m.", "answer": "11:00", "alt": ["11"], "ru": "Когда выселение?"},
+              {"say": "Your flight departs at two forty-five p.m.", "answer": "14:45", "ru": "Когда вылет?"},
+              {"say": "The museum closes at half past five in the afternoon.", "answer": "17:30", "ru": "Когда закрывается музей?"},
+              {"say": "The last train leaves at quarter to midnight.", "answer": "23:45", "ru": "Когда последний поезд?"}
+            ]
+          }</script>
+        </div>
+
+        <div class="ex" data-type="sort" data-id="2.3-predlogi">
+          <script type="application/json">{
+            "title": "at, on или in",
+            "task": "Разложите выражения по предлогу, с которым они употребляются.",
+            "buckets": ["at", "on", "in"],
+            "items": [["7:30",0],["noon",0],["night",0],["Monday",1],["May 6th",1],["Friday evening",1],["the morning",2],["October",2],["2026",2],["the summer",2]],
+            "speak": false
+          }</script>
+        </div>
+
+        <h2 id="s8"><span class="sec">§8</span>Шпаргалка</h2>
+        <div class="cheat">
+          <div><b>Спросить</b><code>What time is it?</code><code>What time does it start?</code><code>How long does it take?</code><code>How often?</code></div>
+          <div><b>По цифрам</b><code>3:15 — three fifteen</code><code>9:05 — nine oh five</code><code>14:35 — two thirty-five p.m.</code></div>
+          <div><b>По стрелкам</b><code>3:10 — ten past three</code><code>3:30 — half past three</code><code>3:45 — quarter to four</code><code>half three = 3:30 (UK)</code></div>
+          <div><b>Предлоги</b><code>at 7:30, at night</code><code>on Monday, on May 6th</code><code>in the morning, in October</code></div>
+        </div>
+
+        <div class="review"></div>
+
+        <nav class="pager">
+          <a href="../22-dengi/index.html">← 2.2 Деньги</a>
+          <a href="../24-daty/index.html">2.4 Даты →</a>
+        </nav>
+        <p class="colophon"><span>Разговорный английский · Макаров Максим Николаевич</span><span>Глава 2.3</span></p>
+      </main>
+    </div>
+  </div>
+  <script src="../../english.js"></script>
+</body>
+</html>
