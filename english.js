@@ -11,6 +11,9 @@
 (() => {
   const KEY = { profile: 'en-book-profile', words: 'en-book-words', done: 'en-book-done' };
   const DAY = 864e5;
+  // Корень книги считается от адреса english.js: из него строятся ссылки на словарь.
+  const self = document.querySelector('script[src$="english.js"]');
+  const base = self ? self.getAttribute('src').replace(/english\.js$/, '') : '';
 
   const load = (key, fallback) => {
     try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch (_) { return fallback; }
@@ -826,6 +829,11 @@
     box.append(stats);
     const inner = h('div', 'review__body');
     box.append(inner);
+    if (!box.dataset.noDict) {
+      const more = h('a', 'review__dict', 'все фразы и слова — в словаре →');
+      more.href = base + 'slovar/index.html';
+      box.querySelector('.review__head').append(more);
+    }
     if (!all.length) {
       inner.append(h('p', '', 'Пока пусто. Сюда попадают фразы из упражнений: ошибка возвращает фразу на повтор в тот же день, верный ответ отодвигает повтор на 1, 2, 4, 8 и 16 дней.'));
       return;
@@ -921,6 +929,13 @@
     running.insertBefore(box, running.querySelector('.running__folio'));
   }
 
+  // Ссылка на словарь в шапке каждой страницы.
+  if (running && !document.body.dataset.noDict) {
+    const link = h('a', 'dict-link', 'словарь');
+    link.href = base + 'slovar/index.html';
+    running.insertBefore(link, running.querySelector('.running__folio'));
+  }
+
   // Перевод в статичной разметке тоже открывается нажатием.
   document.addEventListener('click', event => {
     const tr = event.target.closest('.tr');
@@ -932,5 +947,5 @@
   syncPrefs();
 
   // Для страниц со своими сценариями (стартовая проверка).
-  window.EN = { say, stop, sayButton, ru, profile, setProfile, LEVELS, words, record, exercise };
+  window.EN = { say, stop, sayButton, ru, profile, setProfile, LEVELS, words, record, remember, exercise, store: () => store(KEY.words, words), esc, h };
 })();

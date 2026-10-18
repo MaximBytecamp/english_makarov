@@ -58,6 +58,13 @@
     .how > div { padding: 14px 16px; border: 3px solid var(--ink); background: var(--page); box-shadow: 5px 5px 0 var(--leaf); }
     .how b { display: block; margin-bottom: 6px; font: 600 10.5px/1.4 var(--pixel); letter-spacing: 1.1px; text-transform: uppercase; color: var(--leaf); }
     .how p { margin: 0; font-size: 14.5px; line-height: 1.5; }
+    .dict-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px 22px; align-items: center; margin: 22px 0 10px; padding: 20px 22px; border: 3px solid var(--ink); background: var(--ink); color: #fff; text-decoration: none; box-shadow: 8px 8px 0 var(--leaf); transition: transform .15s ease, box-shadow .15s ease; }
+    .dict-card:hover { color: #fff; transform: translate(-2px, -2px); box-shadow: 10px 10px 0 var(--leaf-bright); }
+    .dict-card__tag { display: block; margin-bottom: 4px; font: 600 10.5px/1.4 var(--pixel); letter-spacing: 1.3px; text-transform: uppercase; color: var(--leaf-bright); }
+    .dict-card strong { display: block; margin-bottom: 6px; font-family: var(--display); font-size: clamp(21px, 2.4vw, 28px); line-height: 1.15; }
+    .dict-card__text > span:last-child { display: block; font-size: 15px; line-height: 1.5; color: #CCD3E0; }
+    .dict-card__go { padding: 12px 18px; background: var(--leaf-bright); color: var(--ink); font: 700 12px/1.3 var(--mono); letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
+    @media (max-width: 700px) { .dict-card { grid-template-columns: 1fr; } .dict-card__go { justify-self: start; } }
   </style>
   <script>
     try { const p = JSON.parse(localStorage.getItem('en-book-profile') || '{}'); const d = document.documentElement; d.dataset.level = p.level || 'a1'; d.dataset.hint = p.hint || 'both'; d.dataset.tr = p.tr || 'show'; } catch (e) {}
@@ -114,6 +121,14 @@
         <p>Подсказки, перевод, акцент и темп настраиваются в шапке любой страницы. Уровень можно определить <a href="temy/02-diagnostika/index.html">стартовой проверкой</a> или выбрать вручную. Прогресс и повтор хранятся в вашем браузере.</p>
 
         <div class="review"></div>
+        <a class="dict-card" href="slovar/index.html">
+          <span class="dict-card__text">
+            <span class="dict-card__tag">Словарь</span>
+            <strong>Все слова и фразы книги</strong>
+            <span id="dict-count">Поиск по-английски и по-русски, звук и подсказки у каждой записи, статус по вашему повтору. Можно добавить свои слова и учить всё карточками.</span>
+          </span>
+          <span class="dict-card__go">Открыть →</span>
+        </a>
 
         <h2><span class="sec">План</span>Модули и главы</h2>
         <div class="modules">

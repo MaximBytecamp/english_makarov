@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#EFEDE6">
+  <title>Словарь · Разговорный английский</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Literata:ital,opsz,wght@0,7..72,600;0,7..72,700;1,7..72,400&family=Noto+Sans:wght@400;700&family=Pixelify+Sans:wght@500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .dstats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin: 0 0 22px; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: var(--page); }
+    .dstats div { padding: 12px 16px; border-right: 1px solid var(--rule); }
+    .dstats div:last-child { border-right: 0; }
+    .dstats b { display: block; font: 700 26px/1.1 var(--mono); }
+    .dstats span { font: 600 10px/1.4 var(--pixel); letter-spacing: 1px; text-transform: uppercase; color: var(--ink-soft); }
+
+    .tools { position: sticky; top: 0; z-index: 5; margin: 0 -8px 16px; padding: 12px 8px; background: var(--page); border-bottom: 2px solid var(--ink); }
+    .search { display: flex; gap: 8px; margin-bottom: 10px; }
+    .search input { flex: 1; min-width: 0; padding: 11px 14px; border: 2px solid var(--ink); background: #fff; color: var(--ink); font: 500 17px/1.2 var(--body); }
+    .search input:focus { outline: 3px solid var(--clay); outline-offset: 0; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+    .filters label.langbar { flex: 1 1 220px; min-width: 0; flex-wrap: nowrap; }
+    .filters select { flex: 1 1 auto; min-width: 0; width: 100%; padding: 6px 8px; border: 2px solid var(--ink); background: #fff; color: var(--ink); font: 500 14px/1.2 var(--body); max-width: 100%; }
+    .found { margin: 0 0 10px; font-size: 14px; color: var(--ink-soft); }
+
+    .dlist { border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: var(--page); }
+    .drow { display: grid; grid-template-columns: 34px 34px minmax(130px, 1.2fr) minmax(110px, 1fr) minmax(120px, 1fr) auto; gap: 4px 12px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--rule); }
+    .drow:last-child { border-bottom: 0; }
+    .drow.is-playing { background: var(--leaf-pale); }
+    .drow__en { min-width: 0; font-weight: 700; font-size: 16px; overflow-wrap: break-word; }
+    .drow__en small { display: block; font: 600 9.5px/1.6 var(--pixel); letter-spacing: 1px; text-transform: uppercase; }
+    .drow__en small a { color: var(--ink-faint); text-decoration: none; }
+    .drow__en small a:hover { color: var(--leaf); }
+    .drow__tr { font-size: 15px; color: var(--ink-soft); }
+    .drow__side { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+    .badge { padding: 2px 7px; border: 2px solid currentColor; font: 600 9.5px/1.4 var(--pixel); letter-spacing: .8px; text-transform: uppercase; white-space: nowrap; }
+    .badge--new { color: var(--ink-faint); }
+    .badge--learning { color: var(--clay); }
+    .badge--known { color: var(--ok); }
+    .badge--hard { color: var(--bad); }
+    .badge--mine { color: var(--violet); }
+    .mini { padding: 3px 8px; border: 2px solid var(--ink); background: #fff; color: var(--ink); cursor: pointer; font: 600 9.5px/1.4 var(--pixel); letter-spacing: .8px; text-transform: uppercase; white-space: nowrap; }
+    .mini:hover { background: var(--leaf-pale); }
+    .mini[disabled] { opacity: .45; cursor: default; }
+    @media (max-width: 760px) {
+      .drow { grid-template-columns: 34px 34px minmax(0, 1fr) auto; }
+      .drow .vocab__pron, .drow .drow__tr { grid-column: 3 / -1; }
+      .drow__side { grid-column: 4; grid-row: 1; }
+    }
+    @media (max-width: 700px) { .tools { position: static; } }
+    .more { display: flex; justify-content: center; padding: 14px; border-top: 2px solid var(--rule); }
+    .empty { padding: 22px 16px; color: var(--ink-soft); }
+
+    .panel { margin: 0 0 22px; padding: 16px 18px; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--violet); background: var(--page); }
+    .panel h3 { margin: 0 0 10px; }
+    .addform { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+    .addform label { display: flex; flex-direction: column; gap: 4px; font: 600 10px/1.4 var(--pixel); letter-spacing: 1px; text-transform: uppercase; color: var(--ink-soft); }
+    .addform input { padding: 9px 11px; border: 2px solid var(--ink); background: #fff; color: var(--ink); font: 500 16px/1.2 var(--body); text-transform: none; letter-spacing: 0; }
+    .addform .hint { grid-column: 1 / -1; margin: 0; font-size: 13.5px; color: var(--ink-soft); }
+
+    /* Карточки. */
+    .cards { margin: 0 0 22px; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--leaf); background: var(--page); }
+    .cards__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 16px; background: var(--ink); color: var(--leaf-pale); font: 600 10.5px/1.4 var(--pixel); letter-spacing: 1.1px; text-transform: uppercase; }
+    .cards__head .btn { padding: 6px 10px; border-color: var(--leaf-bright); background: transparent; color: var(--leaf-bright); }
+    .cards__head .btn[aria-pressed="true"] { background: var(--leaf-bright); color: var(--ink); }
+    .card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; min-height: 240px; padding: 28px 18px; text-align: center; }
+    .card__q { font-family: var(--display); font-size: clamp(24px, 3.4vw, 36px); line-height: 1.25; }
+    .card__a { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .card__a .en { font-size: 24px; font-weight: 700; }
+    .card__a .p { font-size: 15px; color: var(--ink-soft); }
+    .card__note { font-size: 13.5px; color: var(--ink-faint); }
+    .card .say { width: 52px; height: 52px; font-size: 20px; }
+    .cards__foot { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 12px 16px 16px; border-top: 2px solid var(--rule); }
+    .btn--ok { border-color: var(--ok); color: var(--ok); }
+    .btn--bad { border-color: var(--bad); color: var(--bad); }
+  </style>
+  <script>
+    try { const p = JSON.parse(localStorage.getItem('en-book-profile') || '{}'); const d = document.documentElement; d.dataset.level = p.level || 'a1'; d.dataset.hint = p.hint || 'both'; d.dataset.tr = p.tr || 'show'; } catch (e) {}
+  </script>
+</head>
+<body data-no-dict="1">
+  <div class="book">
+    <div class="book__body">
+      <div class="spine"><span>Словарь · Разговорный английский</span></div>
+
+      <main class="leaf">
+        <div class="running">
+          <p class="eyebrow"><a href="../index.html" style="text-decoration:none;color:inherit">Разговорный английский</a> · словарь</p>
+          <p class="running__folio">Словарь</p>
+        </div>
+
+        <header class="chapter-head">
+          <span class="chapter-num">A–Z</span>
+          <h1>Словарь</h1>
+          <p class="lead">Все слова и фразы из глав книги на одной странице: со звуком, транскрипцией, русской подсказкой и переводом. У каждой записи видно, в какой главе она встречается и как у вас с ней дела по блоку «Повтор». Сюда же можно добавить свои слова — например, услышанные в поездке, — и учить их карточками вместе со словами книги.</p>
+        </header>
+
+        <div class="dstats" id="stats"></div>
+
+        <div class="cards" id="cards" hidden></div>
+
+        <div class="panel" id="addpanel" hidden>
+          <h3>Своё слово или фраза</h3>
+          <form class="addform" id="addform">
+            <label>По-английски<input name="en" required autocomplete="off" placeholder="Is there a pharmacy nearby?"></label>
+            <label>Перевод<input name="tr" required autocomplete="off" placeholder="Здесь рядом есть аптека?"></label>
+            <label>Как читается — необязательно<input name="ru" autocomplete="off" placeholder="ФАРмэси"></label>
+            <p class="hint">Звук подставится сам, голосом из главы 0.1. В подсказке ударный слог пишите заглавными, как в книге. Слово сразу попадёт в повтор.</p>
+            <div class="btnrow" style="grid-column:1/-1;margin:0"><button class="btn btn--dark" type="submit">добавить</button><button class="btn" type="button" id="addcancel">отмена</button></div>
+          </form>
+        </div>
+
+        <div class="tools">
+          <div class="search"><input type="search" id="q" placeholder="Найти слово или перевод" autocomplete="off" aria-label="Поиск по словарю"></div>
+          <div class="filters">
+            <div class="langbar" id="f-kind"><span class="langbar__label">вид</span></div>
+            <div class="langbar" id="f-status"><span class="langbar__label">статус</span></div>
+            <label class="langbar"><span class="langbar__label">глава</span><select id="f-ch"></select></label>
+          </div>
+          <div class="btnrow" style="margin:10px 0 0">
+            <button class="btn btn--dark" type="button" id="go-cards">карточки по этому списку</button>
+            <button class="btn" type="button" id="go-add">+ своё слово</button>
+            <button class="btn" type="button" id="go-export">скачать мои слова</button>
+            <label class="btn" style="cursor:pointer">загрузить<input type="file" id="go-import" accept="application/json" hidden></label>
+          </div>
+        </div>
+
+        <p class="found" id="found"></p>
+        <div class="dlist" id="list"></div>
+
+        <h2 id="kak"><span class="sec">?</span>Как пользоваться</h2>
+        <ul>
+          <li><b>Статус</b> берётся из упражнений и карточек. <i>Новое</i> — слово ещё не попадалось в упражнениях. <i>Учу</i> — отвечали, но повтор ещё нужен. <i>В памяти</i> — три верных ответа подряд с перерывами. <i>Ошибки</i> — последние ответы были неверными.</li>
+          <li><b>Карточки</b> строятся из того, что сейчас показано в списке. Отфильтруйте, например, главу 2.1 и статус «новое», и учите только их. Три режима: по переводу вспомнить английское, по английскому — перевод, на слух — понять, что прозвучало.</li>
+          <li><b>«В повтор»</b> добавляет слово в блок «Повтор» на обложке, даже если его не было в упражнениях.</li>
+          <li><b>Свои слова</b> хранятся в этом браузере. Кнопка «скачать мои слова» сохраняет их в файл, «загрузить» — возвращает, например, на другом устройстве.</li>
+        </ul>
+
+        <nav class="pager">
+          <a href="../index.html">← Оглавление</a>
+          <a href="#">Наверх ↑</a>
+        </nav>
+        <p class="colophon"><span>Разговорный английский · Макаров Максим Николаевич</span><span>Словарь собирается из глав</span></p>
+      </main>
+    </div>
+  </div>
+  <script src="dict.js"></script>
+  <script src="../english.js"></script>
+  <script>
+  (() => {
+    const { say, sayButton, ru, words, record, remember, store, esc, h } = window.EN;
+    const DAY = 864e5;
+    const MINE_KEY = 'en-book-mine';
+    const loadMine = () => { try { return JSON.parse(localStorage.getItem(MINE_KEY)) || []; } catch (_) { return []; } };
+    const saveMine = list => { try { localStorage.setItem(MINE_KEY, JSON.stringify(list)); } catch (_) {} };
+    let mine = loadMine();
+
+    const chapters = window.DICT.chapters;
+    const chByNum = Object.fromEntries(chapters.map(c => [c.num, c]));
+    const all = () => window.DICT.items.concat(mine.map(m => ({ en: m.en, tr: m.tr, ru: m.ru || '', ipa: '', kind: /\s/.test(m.en.trim()) ? 'phrase' : 'word', ch: [], mine: true })));
+
+    // Статус записи по данным повтора.
+    const status = item => {
+      const w = words[item.en];
+      if (item.mine && (!w || !w.seen)) return 'mine';
+      if (!w || !w.seen) return 'new';
+      if (w.wrong > 0 && w.box < 2) return 'hard';
+      if (w.box >= 3) return 'known';
+      return 'learning';
+    };
+    const STATUS = { new: 'новое', learning: 'учу', known: 'в памяти', hard: 'ошибки', mine: 'моё' };
+
+    const state = { q: '', kind: 'all', status: 'all', ch: 'all', shown: 60 };
+    const norm = s => String(s).toLowerCase().replace(/ё/g, 'е').replace(/[’']/g, "'").replace(/[.,!?;:«»"—–-]+/g, ' ').replace(/\s+/g, ' ').trim();
+
+    const filtered = () => {
+      const q = norm(state.q);
+      return all().filter(item => {
+        if (state.kind !== 'all' && item.kind !== state.kind) return false;
+        if (state.ch === 'mine' ? !item.mine : (state.ch !== 'all' && !item.ch.includes(state.ch))) return false;
+        const st = status(item);
+        if (state.status !== 'all' && !(state.status === 'mine' ? item.mine : st === state.status)) return false;
+        if (q && !norm(item.en).includes(q) && !norm(item.tr).includes(q)) return false;
+        return true;
+      }).sort((a, b) => {
+        if (!q) return 0;
+        // Сначала точные и начинающиеся с запроса.
+        const rank = x => (norm(x.en) === q || norm(x.tr) === q ? 0 : norm(x.en).startsWith(q) || norm(x.tr).startsWith(q) ? 1 : 2);
+        return rank(a) - rank(b);
+      });
+    };
+
+    /* ---- Статистика ---- */
+    const renderStats = () => {
+      const items = all();
+      const counts = { new: 0, learning: 0, known: 0, hard: 0 };
+      items.forEach(i => { const s = status(i); if (counts[s] != null) counts[s] += 1; });
+      document.getElementById('stats').innerHTML =
+        `<div><b>${items.length}</b><span>записей</span></div>`
+        + `<div><b>${counts.learning + counts.hard}</b><span>учу сейчас</span></div>`
+        + `<div><b>${counts.known}</b><span>в памяти</span></div>`
+        + `<div><b>${counts.hard}</b><span>с ошибками</span></div>`
+        + `<div><b>${mine.length}</b><span>моих слов</span></div>`;
+    };
+
+    /* ---- Фильтры ---- */
+    const chips = (id, key, items) => {
+      const bar = document.getElementById(id);
+      items.forEach(([value, title]) => {
+        const b = h('button', '', title);
+        b.type = 'button';
+        b.dataset.value = value;
+        b.addEventListener('click', () => { state[key] = value; state.shown = 60; sync(); render(); });
+        bar.append(b);
+      });
+    };
+    chips('f-kind', 'kind', [['all', 'все'], ['word', 'слова'], ['phrase', 'фразы']]);
+    chips('f-status', 'status', [['all', 'все'], ['new', 'новые'], ['learning', 'учу'], ['hard', 'ошибки'], ['known', 'в памяти'], ['mine', 'мои']]);
+    const sel = document.getElementById('f-ch');
+    sel.innerHTML = '<option value="all">все главы</option>'
+      + chapters.filter(c => window.DICT.items.some(i => i.ch.includes(c.num))).map(c => `<option value="${c.num}">${c.num} ${esc(c.title)}</option>`).join('')
+      + '<option value="mine">мои слова</option>';
+    sel.addEventListener('change', () => { state.ch = sel.value; state.shown = 60; render(); });
+    const sync = () => {
+      ['kind', 'status'].forEach(key => document.querySelectorAll(`#f-${key} button`).forEach(b => b.setAttribute('aria-pressed', String(b.dataset.value === state[key]))));
+    };
+    const q = document.getElementById('q');
+    let t = 0;
+    q.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => { state.q = q.value; state.shown = 60; render(); }, 120); });
+
+    // Открытие словаря с готовым запросом: slovar/index.html#q=aisle или #ch=2.1
+    const fromHash = () => {
+      const p = new URLSearchParams(location.hash.slice(1));
+      if (p.get('q')) { state.q = q.value = p.get('q'); }
+      if (p.get('ch')) { state.ch = sel.value = p.get('ch'); }
+    };
+
+    /* ---- Список ---- */
+    const row = item => {
+      const r = h('div', 'drow');
+      const play = sayButton(item.en);
+      play.addEventListener('click', () => r.classList.add('is-playing'));
+      const slow = sayButton(item.en, { slow: true });
+      const en = h('div', 'drow__en', esc(item.en));
+      const where = h('small', '');
+      if (item.mine) where.textContent = 'моё слово';
+      else where.innerHTML = item.ch.map(n => `<a href="${chByNum[n].href}" title="${esc(chByNum[n].title)}">гл. ${n}</a>`).join(' · ');
+      en.append(where);
+      const pron = h('div', 'vocab__pron');
+      if (item.ipa) pron.append(h('span', 'hint-ipa', `/${esc(item.ipa)}/`));
+      if (item.ru) pron.append(h('span', 'hint-ru', ru(item.ru)));
+      const tr = h('div', 'drow__tr', esc(item.tr));
+      const side = h('div', 'drow__side');
+      const st = status(item);
+      side.append(h('span', `badge badge--${st}`, STATUS[st]));
+      const w = words[item.en];
+      const due = w && w.seen && w.due <= Date.now();
+      if (item.mine) {
+        const del = h('button', 'mini', 'удалить');
+        del.type = 'button';
+        del.addEventListener('click', () => {
+          mine = mine.filter(m => m.en !== item.en);
+          saveMine(mine);
+          render();
+        });
+        side.append(del);
+      } else {
+        const add = h('button', 'mini', due ? 'в повторе' : 'в повтор');
+        add.type = 'button';
+        add.disabled = !!due;
+        add.title = 'Слово появится в блоке «Повтор» сегодня';
+        add.addEventListener('click', () => {
+          const it = remember(item.en, { tr: item.tr, ru: item.ru, ipa: item.ipa });
+          it.seen = it.seen || Date.now();
+          it.due = Date.now();
+          store();
+          add.textContent = 'в повторе';
+          add.disabled = true;
+          renderStats();
+        });
+        side.append(add);
+      }
+      r.append(play, slow, en, pron, tr, side);
+      return r;
+    };
+
+    const render = () => {
+      const list = document.getElementById('list');
+      const items = filtered();
+      list.innerHTML = '';
+      const words1 = items.filter(i => i.kind === 'word').length;
+      document.getElementById('found').textContent = items.length
+        ? `Найдено: ${items.length} — слов ${words1}, фраз ${items.length - words1}`
+        : '';
+      if (!items.length) {
+        list.append(h('p', 'empty', state.q
+          ? `По запросу «${esc(state.q)}» ничего нет. Если это слово вам нужно, добавьте его кнопкой «+ своё слово».`
+          : 'В этом разделе пока пусто.'));
+      }
+      items.slice(0, state.shown).forEach(i => list.append(row(i)));
+      if (items.length > state.shown) {
+        const more = h('div', 'more');
+        const b = h('button', 'btn', `показать ещё ${Math.min(60, items.length - state.shown)} из ${items.length - state.shown}`);
+        b.type = 'button';
+        b.addEventListener('click', () => { state.shown += 60; render(); });
+        more.append(b);
+        list.append(more);
+      }
+      renderStats();
+    };
+
+    /* ---- Свои слова ---- */
+    const addpanel = document.getElementById('addpanel');
+    const form = document.getElementById('addform');
+    document.getElementById('go-add').addEventListener('click', () => {
+      addpanel.hidden = false;
+      if (state.q) form.en.value = state.q;
+      form.en.focus();
+    });
+    document.getElementById('addcancel').addEventListener('click', () => { addpanel.hidden = true; form.reset(); });
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const en = form.en.value.trim(), tr = form.tr.value.trim(), hint = form.ru.value.trim();
+      if (!en || !tr) return;
+      mine = mine.filter(m => m.en !== en).concat({ en, tr, ru: hint, at: Date.now() });
+      saveMine(mine);
+      const it = remember(en, { tr, ru: hint });
+      it.seen = Date.now();
+      it.due = Date.now();
+      store();
+      form.reset();
+      addpanel.hidden = true;
+      say(en);
+      state.q = q.value = '';
+      state.ch = sel.value = 'mine';
+      render();
+    });
+    document.getElementById('go-export').addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify({ mine, words }, null, 1)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'moi-slova-english.json';
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    });
+    document.getElementById('go-import').addEventListener('change', async e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const data = JSON.parse(await file.text());
+        (data.mine || []).forEach(m => { if (m.en && m.tr && !mine.some(x => x.en === m.en)) mine.push(m); });
+        Object.entries(data.words || {}).forEach(([en, w]) => {
+          const cur = words[en];
+          if (!cur || (w.seen || 0) > (cur.seen || 0)) words[en] = w;
+        });
+        saveMine(mine);
+        store();
+        render();
+        alert('Загружено: моих слов ' + (data.mine || []).length + ', записей повтора ' + Object.keys(data.words || {}).length + '.');
+      } catch (err) {
+        alert('Не удалось прочитать файл: ' + err.message);
+      }
+      e.target.value = '';
+    });
+
+    /* ---- Карточки ---- */
+    const cardsBox = document.getElementById('cards');
+    const MODES = [['ru', 'перевод → англ.'], ['en', 'англ. → перевод'], ['ear', 'на слух']];
+    let deck = [], pos = 0, mode = 'ru', right = 0;
+    const startCards = () => {
+      // Сначала то, что пора повторить и с ошибками, потом новое; не больше 20 карточек.
+      const now = Date.now();
+      const weight = i => { const w = words[i.en]; if (!w || !w.seen) return 2; if (w.due <= now) return w.wrong ? 0 : 1; return 3; };
+      deck = filtered().map(i => [weight(i), Math.random(), i]).sort((a, b) => a[0] - b[0] || a[1] - b[1]).slice(0, 20).map(x => x[2]);
+      if (!deck.length) { alert('Список пуст — карточки строятся из того, что показано в списке.'); return; }
+      pos = 0; right = 0;
+      cardsBox.hidden = false;
+      showCard();
+      cardsBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    const showCard = () => {
+      cardsBox.innerHTML = '';
+      const head = h('div', 'cards__head', `<span>карточка ${Math.min(pos + 1, deck.length)} из ${deck.length} · вспомнили ${right}</span>`);
+      const row1 = h('div', 'btnrow');
+      row1.style.margin = '0';
+      MODES.forEach(([m, title]) => {
+        const b = h('button', 'btn', title);
+        b.type = 'button';
+        b.setAttribute('aria-pressed', String(m === mode));
+        b.addEventListener('click', () => { mode = m; showCard(); });
+        row1.append(b);
+      });
+      const close = h('button', 'btn', '× закрыть');
+      close.type = 'button';
+      close.addEventListener('click', () => { cardsBox.hidden = true; render(); });
+      row1.append(close);
+      head.append(row1);
+      cardsBox.append(head);
+
+      if (pos >= deck.length) {
+        const end = h('div', 'card');
+        end.append(h('p', 'card__q', `Вспомнили ${right} из ${deck.length}`),
+          h('p', 'card__note', 'Слова, которые не вспомнили, вернутся в блок «Повтор» сегодня, остальные — через несколько дней.'));
+        const again = h('button', 'btn btn--dark', 'ещё 20 карточек');
+        again.type = 'button';
+        again.addEventListener('click', startCards);
+        end.append(again);
+        cardsBox.append(end);
+        return;
+      }
+
+      const item = deck[pos];
+      const card = h('div', 'card');
+      if (mode === 'ru') card.append(h('p', 'card__q', esc(item.tr)), h('p', 'card__note', 'Вспомните, как это по-английски, и скажите это сами'));
+      if (mode === 'en') {
+        card.append(h('p', 'card__q', esc(item.en)), h('p', 'card__note', 'Вспомните перевод'));
+        say(item.en);
+      }
+      if (mode === 'ear') {
+        const b = sayButton(item.en);
+        card.append(b, h('p', 'card__note', 'Послушайте и вспомните, что это значит. Нажмите ▶ ещё раз, если нужно'));
+        setTimeout(() => say(item.en), 200);
+      }
+      const answer = h('div', 'card__a');
+      answer.hidden = true;
+      answer.append(h('span', 'en', esc(item.en)));
+      if (item.ipa || item.ru) answer.append(h('span', 'p', (item.ipa ? `/${esc(item.ipa)}/ ` : '') + (item.ru ? ru(item.ru) : '')));
+      answer.append(h('span', 'p', esc(item.tr)));
+      const sb = h('div', 'btnrow');
+      sb.style.justifyContent = 'center';
+      sb.append(sayButton(item.en), sayButton(item.en, { slow: true }));
+      answer.append(sb);
+      card.append(answer);
+      cardsBox.append(card);
+
+      const foot = h('div', 'cards__foot');
+      const show = h('button', 'btn btn--dark', 'показать ответ');
+      const no = h('button', 'btn btn--bad', '✗ не вспомнил(а)');
+      const yes = h('button', 'btn btn--ok', '✓ вспомнил(а)');
+      [show, no, yes].forEach(b => { b.type = 'button'; });
+      no.hidden = yes.hidden = true;
+      show.addEventListener('click', () => {
+        answer.hidden = false;
+        show.hidden = true;
+        no.hidden = yes.hidden = false;
+        if (mode === 'ru') say(item.en);
+        yes.focus();
+      });
+      const next = ok => {
+        record(item.en, { tr: item.tr, ru: item.ru, ipa: item.ipa }, ok);
+        if (ok) right += 1;
+        pos += 1;
+        showCard();
+      };
+      no.addEventListener('click', () => next(false));
+      yes.addEventListener('click', () => next(true));
+      foot.append(show, no, yes);
+      cardsBox.append(foot);
+      show.focus({ preventScroll: true });
+    };
+    document.getElementById('go-cards').addEventListener('click', startCards);
+
+    fromHash();
+    window.addEventListener('hashchange', () => { fromHash(); state.shown = 60; render(); });
+    sync();
+    render();
+  })();
+  </script>
+</body>
+</html>
